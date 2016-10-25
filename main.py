@@ -12,7 +12,6 @@ def nyomtat():
             if o == 9:
                 print("\n")
 
-
 aArray = []
 bArray = []
 
@@ -36,13 +35,10 @@ for i in range (0, 10):
     new = []
 
 
-positionx = int(input("adjad meg az x pozitront!"))
-positiony = int(input("adjad meg az y pozitront!"))
-ansver = input("föggőleges legyene?  y/n")
 
 
 
-for w in ships:
+'''for w in ships:
     index = 2
     positionx = int(input("adjad meg a"+w+" x pozitronÁT!"))
     positiony = int(input("adjad meg az"+w+" y pozitront!"))
@@ -55,7 +51,26 @@ for w in ships:
         for index in range(len(fivelengthship)):
             aArray[index+positiony-1][positionx-1] = fivelengthship[q]
     nyomtat()
-    index += 1
+    index += 1'''
+
+
+
+for q in range(2, 6):
+    positionx = int(input("adjad meg a x {} pozitronÁT!".format(q)))
+    positiony = int(input("adjad meg a y {} pozitronÁT!".format(q)))
+    answer = input("föggőleges legyene a {} hossz hajó y/n".format(q))  
+
+    if answer == "n":
+        for index in range(q):
+            aArray[positiony-1][index+positionx-1] = fivelengthship[q-2]
+
+    if answer == "y":
+        for index in range(q):
+            aArray[index+positiony-1][positionx-1] = fivelengthship[q-2]
+    nyomtat()
+
+
+
 
 
 
