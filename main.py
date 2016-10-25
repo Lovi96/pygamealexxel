@@ -4,11 +4,13 @@ new = []
 for i in range (0, 10):
     for j in range (0, 10):
         new.append(0)
-        for j in range (0, 10):
-        new.append(0)
     aArray.append(new)
     new = []
-
+for i in range (0, 10):
+    for j in range (0, 10):
+        new.append(0)
+    bArray.append(new)
+    new = []
 
 
 
