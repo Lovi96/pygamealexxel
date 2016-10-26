@@ -65,9 +65,17 @@ for i in range (0, 10):
 
 
 for q in range(2, 6):#                                                  a jatekos hajoi
-    positionx = input("adjad meg a x {} pozitronÁT!".format(q))
-    positiony = int(input("adjad meg a y {} pozitronÁT!".format(q)))
-    answer = input("föggőleges legyene a {} hossz hajó y/n".format(q))  
+    valueerror = 0    
+    while valueerror == 0:
+        positionx = 0
+        letterx = input("adjad meg a x {} pozitronÁT!".format(q))
+        positiony = int(input("adjad meg a y {} pozitronÁT!".format(q)))
+        answer = input("föggőleges legyene a {} hossz hajó y/n".format(q))
+        for s in range(0, 11):
+            if   abc[s-1] == letterx:
+                positionx = s
+        if positionx != 0:
+            valueerror=1
   
     for index in range(q):
         if answer == "n":
