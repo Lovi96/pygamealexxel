@@ -39,12 +39,16 @@ for q in range(2, 6):
     positionx = int(input("adjad meg a x {} pozitronÁT!".format(q)))
     positiony = int(input("adjad meg a y {} pozitronÁT!".format(q)))
     answer = input("föggőleges legyene a {} hossz hajó y/n".format(q))  
-
-    if answer == "n":
-        for index in range(q):
+  
+    for index in range(q):
+        if answer == "n":
             aArray[positiony-1][index+positionx-1] = fivelengthship[q-2]
-
-    if answer == "y":
-        for index in range(q):
+        if answer == "y":
             aArray[index+positiony-1][positionx-1] = fivelengthship[q-2]
+   
     nyomtat()
+
+
+
+
+
