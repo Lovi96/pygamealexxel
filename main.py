@@ -77,7 +77,19 @@ for q in range(2, 6):#                                                  a jateko
             aArray[index+positiony-1][positionx-1] = ships[q-2][index]
    
     nyomtat("a")
-
+while True:
+    shotAllready = 0
+    shotPos = []
+    positionx = int(input("Hova lösz x : "))
+    positiony = int(input("hoa lősz y?: "))
+    if aArray[positiony-1][positionx-1] == 0: 
+        aArray[positiony-1][positionx-1] = 2
+        nyomtat("a")
+        break
+    if aArray[positiony-1][positionx-1] != 0:
+        aArray[positiony-1][positionx-1] = 1
+        nyomtat("a")
+        break
 
 
 
