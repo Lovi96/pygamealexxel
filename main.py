@@ -7,9 +7,8 @@ def nyomtat(whichPlayer):
                 print("     ",end ="")
                 for p in range(0, 10):#########             #ABC
                     print(abc[p]," ",end="")
-                print("\n")#####################################
-            if i==0 and o==0:
-                print("1   ",end="")
+                print("\n")
+                print("1   ",end="")#####################################  
             if whichPlayer == "a":
                 if aArray[i][o] == 0:
                     print("[ ]",end="")
@@ -66,7 +65,7 @@ for i in range (0, 10):
 
 
 for q in range(2, 6):#                                                  a jatekos hajoi
-    positionx = int(input("adjad meg a x {} pozitronÁT!".format(q)))
+    positionx = input("adjad meg a x {} pozitronÁT!".format(q))
     positiony = int(input("adjad meg a y {} pozitronÁT!".format(q)))
     answer = input("föggőleges legyene a {} hossz hajó y/n".format(q))  
   
