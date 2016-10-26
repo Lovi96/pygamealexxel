@@ -1,6 +1,12 @@
 def nyomtat(whichPlayer):
-    for i in range(0, 10):#                            a kiíratás 
+    for i in range(0, 10):
+        print(i+1,"  ",end="")
         for o in range(0, 10):
+            if i == 0 and o == 0:
+                print(" ",end ="")
+                for p in range(0, 10):
+                    print(abc[p]," ",end="")
+                print("\n")
             if whichPlayer == "a":
                 if aArray[i][o] == 0:
                     print("[ ]",end="")
@@ -32,7 +38,7 @@ def nyomtat(whichPlayer):
 
 aArray = []
 bArray = []
-
+prInt = 0   #ddddddddddddddddddddddddsadasdéjfalwejflwefkkláaweefkáéfkáélwekfwkáéwaockwarlock
 fivelengthship = [6,6,6,6,6]
 fourlengthship = [5,5,5,5]
 threelengthship = [4,4,4]
@@ -40,8 +46,10 @@ twolengthship = [3,3]
 
 ships = [twolengthship, threelengthship, fourlengthship, fivelengthship]
 
+abc = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
+
 new = []
-for i in range (0, 10):#                         tömb inicializálása
+for i in range (0, 10):#                                             tömb inicializálása
     for j in range (0, 10):
         new.append(0)
     aArray.append(new)
@@ -53,7 +61,7 @@ for i in range (0, 10):
     new = []
 
 
-for q in range(2, 6):
+for q in range(2, 6):#                                                  a jatekos hajoi
     positionx = int(input("adjad meg a x {} pozitronÁT!".format(q)))
     positiony = int(input("adjad meg a y {} pozitronÁT!".format(q)))
     answer = input("föggőleges legyene a {} hossz hajó y/n".format(q))  
