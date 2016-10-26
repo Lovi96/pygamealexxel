@@ -77,11 +77,11 @@ while True:
     shotPos = []
     positionx = int(input("Hova lösz x : "))
     positiony = int(input("hoa lősz y?: "))
-    if aArray[positionx-1][positiony-1] == 0: 
-        aArray[positionx-1][positiony-1] = 2
+    if aArray[positiony-1][positionx-1] == 0: 
+        aArray[positiony-1][positionx-1] = 2
         nyomtat("a")
         break
-    if aArray[positionx-1][positiony-1] != 0:
-        aArray[positionx-1][positiony-1] = 1
+    if aArray[positiony-1][positionx-1] != 0:
+        aArray[positiony-1][positionx-1] = 1
         nyomtat("a")
         break
