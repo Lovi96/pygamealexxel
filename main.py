@@ -9,7 +9,13 @@ def nyomtat(whichPlayer):
                 if aArray[i][o] == 2:
                     print("[O]",end="")
                 if aArray[i][o] == 3:
-                    print("[#]",end="")
+                    print("[T]",end="")
+                if aArray[i][o] == 4:
+                    print("[C]",end="")
+                if aArray[i][o] == 5:
+                    print("[A]",end="")
+                if aArray[i][o] == 6:
+                    print("[B]",end="")
                 if o == 9:
                     print("\n")
             if whichPlayer == "b":
@@ -27,9 +33,9 @@ def nyomtat(whichPlayer):
 aArray = []
 bArray = []
 
-fivelengthship = [3,3,3,3,3]
-fourlengthship = [3,3,3,3]
-threelengthship = [3,3,3]
+fivelengthship = [6,6,6,6,6]
+fourlengthship = [5,5,5,5]
+threelengthship = [4,4,4]
 twolengthship = [3,3]
 
 ships = [twolengthship, threelengthship, fourlengthship, fivelengthship]
@@ -54,9 +60,9 @@ for q in range(2, 6):
   
     for index in range(q):
         if answer == "n":
-            aArray[positiony-1][index+positionx-1] = fivelengthship[q-2]
+            aArray[positiony-1][index+positionx-1] = ships[q-2][index]
         if answer == "y":
-            aArray[index+positiony-1][positionx-1] = fivelengthship[q-2]
+            aArray[index+positiony-1][positionx-1] = ships[q-2][index]
    
     nyomtat("a")
 
