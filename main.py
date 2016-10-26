@@ -1,16 +1,28 @@
-def nyomtat():
+def nyomtat(whichPlayer):
     for i in range(0, 10):#                            a kiíratás 
         for o in range(0, 10):
-            if aArray[i][o] == 0:
-                print("[ ]",end="")
-            if aArray[i][o] == 1:
-                print("[X]",end="")
-            if aArray[i][o] == 2:
-                print("[O]",end="")
-            if aArray[i][o] == 3:
-                print("[#]",end="")
-            if o == 9:
-                print("\n")
+            if whichPlayer == "a":
+                if aArray[i][o] == 0:
+                    print("[ ]",end="")
+                if aArray[i][o] == 1:
+                    print("[X]",end="")
+                if aArray[i][o] == 2:
+                    print("[O]",end="")
+                if aArray[i][o] == 3:
+                    print("[#]",end="")
+                if o == 9:
+                    print("\n")
+            if whichPlayer == "b":
+                if bArray[i][o] == 0:
+                    print("[ ]",end="")
+                if bArray[i][o] == 1:
+                    print("[X]",end="")
+                if bArray[i][o] == 2:
+                    print("[O]",end="")
+                if bArray[i][o] == 3:
+                    print("[#]",end="")
+                if o == 9:
+                    print("\n")
 
 aArray = []
 bArray = []
@@ -46,7 +58,7 @@ for q in range(2, 6):
         if answer == "y":
             aArray[index+positiony-1][positionx-1] = fivelengthship[q-2]
    
-    nyomtat()
+    nyomtat("a")
 
 
 
