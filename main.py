@@ -1,12 +1,15 @@
 def nyomtat(whichPlayer):
     for i in range(0, 10):
-        print(i+1,"  ",end="")
+        if i > 0:
+            print(i+1,"  ",end="")
         for o in range(0, 10):
-            if i == 0 and o == 0:
-                print(" ",end ="")
-                for p in range(0, 10):
+            if i == 0 and o == 0:###############################
+                print("     ",end ="")
+                for p in range(0, 10):#########             #ABC
                     print(abc[p]," ",end="")
-                print("\n")
+                print("\n")#####################################
+            if i==0 and o==0:
+                print("1   ",end="")
             if whichPlayer == "a":
                 if aArray[i][o] == 0:
                     print("[ ]",end="")
@@ -24,6 +27,7 @@ def nyomtat(whichPlayer):
                     print("[B]",end="")
                 if o == 9:
                     print("\n")
+
             if whichPlayer == "b":
                 if bArray[i][o] == 0:
                     print("[ ]",end="")
