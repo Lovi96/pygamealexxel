@@ -1,6 +1,5 @@
 def nyomtat(whichPlayer):
     for i in range(0, 10):
-        print(i+1,"  ",end="")
         for o in range(0, 10):
             if i == 0 and o == 0:
                 print(" ",end ="")
@@ -73,3 +72,16 @@ for q in range(2, 6):#                                                  a jateko
             aArray[index+positiony-1][positionx-1] = ships[q-2][index]
    
     nyomtat("a")
+while True:
+    shotAllready = 0
+    shotPos = []
+    positionx = int(input("Hova lösz x : "))
+    positiony = int(input("hoa lősz y?: "))
+    if aArray[positionx-1][positiony-1] == 0: 
+        aArray[positionx-1][positiony-1] = 2
+        nyomtat("a")
+        break
+    if aArray[positionx-1][positiony-1] != 0:
+        aArray[positionx-1][positiony-1] = 1
+        nyomtat("a")
+        break
