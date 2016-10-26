@@ -1,0 +1,5 @@
+HajokLetevése p1nek, p2nek
+p1 lő: print p1ocean, print p1hajok, koordit kér lövéshez, megjelöli p1ocean koordit
+p2 lő: 5sec delay,print p2ocean ,print p2hajok+p1ocean=p2hajok, koordit kér lövéshez, megjelöli p2ocean koordit
+p1 lő: 5sec delay,print p1ocean ,print p1hajok+p2ocean=p1hajok, koordit kér lövéshez, megjelöli p1ocean koordit
+if nincs több hajó elem GAME VOER.  
