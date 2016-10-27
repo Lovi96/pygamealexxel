@@ -157,9 +157,6 @@ for q in range(2, 6):#                                                  a jateko
    
     nyomtat("b")
 while True:
-    if aArray[]
-    shotAllready = 0
-    shotPos = []
     nyomtat("aOcean")
     nyomtat("a")
     print("\n\nPlayer 1: Where would you like to shoot?")
@@ -168,33 +165,46 @@ while True:
     if bArray[positiony-1][positionx] == 0: 
         bArray[positiony-1][positionx] = 2
         nyomtat("aOcean")
-        nyomtat("a")
-    #if (bArray[positiony-1][positionx] == 3) or (bArray[positiony-1][positionx] == 4) or (bArray[positiony-1][positionx] == 5) or (bArray[positiony-1][positionx] == 6):
+        print("MISS")
+    
     if bArray[positiony-1][positionx] == 3:
         bArray[positiony-1][positionx] = 1
         nyomtat("aOcean")
         bSubmarine -= 1
-        if (bSubmarine < paSubmarine) and (bSubmarine == 0):
+        if (bSubmarine < pbSubmarine) and (bSubmarine == 0):
             print("Player 2's Submarine sank. ")
-        nyomtat("a")
+        pbSubmarine = bSubmarine
+        print("p2 submarine hit")
 
     elif bArray[positiony-1][positionx] == 4:
         bArray[positiony-1][positionx] = 1
         nyomtat("aOcean")
         bCruiser -= 1
-        nyomtat("a")
+        if (bCruiser < pbCruiser) and (bCruiser == 0):
+            print("Player 2's Cruiser sank. ")
+        pbCruiser = bCruiser
+        print("p2 cruiser hit")      
 
     elif bArray[positiony-1][positionx] == 5:
         bArray[positiony-1][positionx] = 1
         nyomtat("aOcean")
         bMothership -= 1
-        nyomtat("a")
+        if (bMothership < pbMothership) and (bMothership == 0):
+            print("Player 2's Mothership sank. ")
+        pbMothership = bMothership 
+        print("p2 mothership hit") 
+
 
     elif bArray[positiony-1][positionx] == 6:  
         bArray[positiony-1][positionx] = 1
         nyomtat("aOcean")
         bBattleship -= 1
-        nyomtat("a")
+        if (bBattleship < pbBattleship) and (bBattleship == 0):
+            print("Player 2's Battleship sank. ")
+        pbBattleship = bBattleship 
+        print("p2 battleship hit")
+
+    nyomtat("a")
 
 
 
@@ -207,17 +217,46 @@ while True:
         aArray[positiony-1][positionx] = 2
         nyomtat("bOcean")
         nyomtat("b")
-    if (aArray[positiony-1][positionx] == 3) or (aArray[positiony-1][positionx] == 4) or (aArray[positiony-1][positionx] == 5) or (aArray[positiony-1][positionx] == 6):
+        print("miss")
         
-        
-        
+    if aArray[positiony-1][positionx] == 3:
         aArray[positiony-1][positionx] = 1
         nyomtat("bOcean")
-        nyomtat("b")
+        aSubmarine -= 1
+        if (aSubmarine < paSubmarine) and (aSubmarine == 0):
+            print("Player 1's Submarine sank. ")
+        paSubmarine = aSubmarine
+        print("p1 submarine hit")
+
+    elif aArray[positiony-1][positionx] == 4:
+        aArray[positiony-1][positionx] = 1
+        nyomtat("bOcean")
+        aCruiser -= 1
+        if (aCruiser < paCruiser) and (aCruiser == 0):
+            print("Player 1's Cruiser sank. ")
+        paCruiser = aCruiser 
+        print("p1 cruiser hit")     
+
+    elif aArray[positiony-1][positionx] == 5:
+        aArray[positiony-1][positionx] = 1
+        nyomtat("bOcean")
+        aMothership -= 1
+        if (aMothership < paMothership) and (aMothership == 0):
+            print("Player 1's Mothership sank. ")
+        paMothership = aMothership  
+        print("p1 mothership hit")
 
 
-    paSubmarine, pbSubmarine = aSubmarine, bSubmarine
-    paCruiser, pbCruiser = aCruiser, bCruiser
-    paMothership, pbMothership = aMothership, bMothership
-    paBattleship, pbBattleship = aBattleship, bBattleship
+    elif aArray[positiony-1][positionx] == 6:  
+        aArray[positiony-1][positionx] = 1
+        nyomtat("bOcean")
+        aBattleship -= 1
+        if (aBattleship < paBattleship) and (aBattleship == 0):
+            print("Player 1's Battleship sank. ")
+        paBattleship = aBattleship 
+        print("p1 battleship hit")
+
+
+    nyomtat("b")
+
 
