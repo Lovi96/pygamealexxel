@@ -95,7 +95,6 @@ def textToInt():
 
 aArray = []
 bArray = []
-prInt = 0   #ddddddddddddddddddddddddsadasdéjfalwejflwefkkláaweefkáéfkáélwekfwkáéwaockwarlock
 fivelengthship = [6,6,6,6,6]
 fourlengthship = [5,5,5,5]
 threelengthship = [4,4,4]
