@@ -127,8 +127,9 @@ for i in range (0, 10):
     bArray.append(new)
     new = []
 
-
+nyomtat("a")
 for q in range(2, 6):#                                                  a jatekos hajoi
+    
     print("Give the positions of the {}!  ".format(shipsNames[q-2]))
     positionx = textToInt()
     positiony = int(input("Give the Y position of the {}! (1-10) ".format(shipsNames[q-2])))
@@ -157,11 +158,17 @@ for q in range(2, 6):#                                                  a jateko
    
     nyomtat("b")
 while True:
+    if (aSubmarine == 0) and (aBattleship == 0) and (aMothership == 0) and (aCruiser == 0):
+        print("\n\nPLAYER 2 WINS!!!"*3)
+        break
+    if (bSubmarine == 0) and (bBattleship == 0) and (bMothership == 0) and (bCruiser == 0):
+        print("\n\nPLAYER 1 WINS!!!"*3)
+        break
     nyomtat("aOcean")
     nyomtat("a")
     print("\n\nPlayer 1: Where would you like to shoot?")
     positionx = textToInt()
-    positiony = int(input("Give the Y coordinate! (A-J) "))
+    positiony = int(input("Give the Y coordinate! (1-10) "))
     if bArray[positiony-1][positionx] == 0: 
         bArray[positiony-1][positionx] = 2
         nyomtat("aOcean")
@@ -212,7 +219,7 @@ while True:
     nyomtat("b")
     print("\n\nPlayer 2: Where would you like to shoot?")
     positionx = textToInt()
-    positiony = int(input("Give the Y coordinate! (A-J) "))
+    positiony = int(input("Give the Y coordinate! (1-10) "))
     if aArray[positiony-1][positionx] == 0: 
         aArray[positiony-1][positionx] = 2
         nyomtat("bOcean")
