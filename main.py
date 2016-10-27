@@ -164,8 +164,8 @@ while True:
     if (bSubmarine == 0) and (bBattleship == 0) and (bMothership == 0) and (bCruiser == 0):
         print("\n\nPLAYER 1 WINS!!!"*3)
         break
-    nyomtat("aOcean")
     nyomtat("a")
+    nyomtat("aOcean")
     print("\n\nPlayer 1: Where would you like to shoot?")
     positionx = textToInt()
     positiony = int(input("Give the Y coordinate! (1-10) "))
@@ -215,15 +215,15 @@ while True:
 
 
 
-    nyomtat("bOcean")
     nyomtat("b")
+    nyomtat("bOcean")
     print("\n\nPlayer 2: Where would you like to shoot?")
     positionx = textToInt()
     positiony = int(input("Give the Y coordinate! (1-10) "))
     if aArray[positiony-1][positionx] == 0: 
         aArray[positiony-1][positionx] = 2
-        nyomtat("bOcean")
         nyomtat("b")
+        nyomtat("bOcean")
         print("miss")
         
     if aArray[positiony-1][positionx] == 3:
@@ -262,8 +262,4 @@ while True:
             print("Player 1's Battleship sank. ")
         paBattleship = aBattleship 
         print("p1 battleship hit")
-
-
     nyomtat("b")
-
-
