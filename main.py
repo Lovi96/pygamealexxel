@@ -35,21 +35,59 @@ def nyomtat(whichPlayer):
                 if bArray[i][o] == 2:
                     print("[O]",end="")
                 if bArray[i][o] == 3:
-                    print("[#]",end="")
+                    print("[T]",end="")
+                if bArray[i][o] == 4:
+                    print("[C]",end="")
+                if bArray[i][o] == 5:
+                    print("[A]",end="")
+                if bArray[i][o] == 6:
+                    print("[B]",end="")
+                if o == 9:
+                    print("\n")
+            if whichPlayer == "aOcean":
+                if bArray[i][o] == 0:
+                    print("[ ]",end="")
+                if bArray[i][o] == 1:
+                    print("[X]",end="")
+                if bArray[i][o] == 2:
+                    print("[O]",end="")
+                if bArray[i][o] == 3:
+                    print("[ ]",end="")
+                if bArray[i][o] == 4:
+                    print("[ ]",end="")
+                if bArray[i][o] == 5:
+                    print("[ ]",end="")
+                if bArray[i][o] == 6:
+                    print("[ ]",end="")
+                if o == 9:
+                    print("\n")
+            if whichPlayer == "bOcean":
+                if aArray[i][o] == 0:
+                    print("[ ]",end="")
+                if aArray[i][o] == 1:
+                    print("[X]",end="")
+                if aArray[i][o] == 2:
+                    print("[O]",end="")
+                if aArray[i][o] == 3:
+                    print("[ ]",end="")
+                if aArray[i][o] == 4:
+                    print("[ ]",end="")
+                if aArray[i][o] == 5:
+                    print("[ ]",end="")
+                if aArray[i][o] == 6:
+                    print("[ ]",end="")
                 if o == 9:
                     print("\n")
 def textToInt():
     valueerror = 1    
     while valueerror == 1:       
         csoda = input("adjad meg a x {} pozitronÁT!(nagybetű)".format(q))
-
-        for s in range(0, 11):
-            if   abc[s-1] == csoda:
-                
+        hilfe = 0
+        for s in range(0, 10):
+            if abc[s] == csoda:
                 csoda = s
-                print(csoda, abc[s-1], )
-        if csoda != 0:
-            print("lép ki")
+                hilfe = 1
+        if hilfe == 1:
             valueerror=0
             return csoda
             
@@ -92,19 +130,43 @@ for q in range(2, 6):#                                                  a jateko
             aArray[index+positiony-1][positionx-1] = ships[q-2][index]
    
     nyomtat("a")
+for q in range(2, 6):#                                                  a jatekos hajoi
+    positionx = textToInt()
+    positiony = int(input("adjad meg a y {} pozitronÁT!".format(q)))
+    answer = input("föggőleges legyene a {} hossz hajó y/n".format(q))
+  
+    for index in range(q):
+        if answer == "n":
+            bArray[positiony-1][index+positionx-1] = ships[q-2][index]
+        if answer == "y":
+            bArray[index+positiony-1][positionx-1] = ships[q-2][index]
+   
+    nyomtat("b")
 while True:
     shotAllready = 0
     shotPos = []
     positionx = textToInt()
     positiony = int(input("hoa lősz y?: "))
+    nyomtat("aOcean")
+    nyomtat("a")
     if aArray[positiony-1][positionx-1] == 0: 
         aArray[positiony-1][positionx-1] = 2
+        nyomtat("aOcean")
         nyomtat("a")
-        break
     if aArray[positiony-1][positionx-1] != 0:
         aArray[positiony-1][positionx-1] = 1
+        nyomtat("aOcean")
         nyomtat("a")
-        break
+    positionx = textToInt()
+    positiony = int(input("hoa lősz y?: "))
+    if aArray[positiony-1][positionx-1] == 0: 
+        aArray[positiony-1][positionx-1] = 2
+        nyomtat("bOcean")
+        nyomtat("b")
+    if aArray[positiony-1][positionx-1] != 0:
+        aArray[positiony-1][positionx-1] = 1
+        nyomtat("bOcean")
+        nyomtat("b")
 
 
 
