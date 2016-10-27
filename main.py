@@ -38,6 +38,22 @@ def nyomtat(whichPlayer):
                     print("[#]",end="")
                 if o == 9:
                     print("\n")
+def textToInt():
+    valueerror = 1    
+    while valueerror == 1:       
+        csoda = input("adjad meg a x {} pozitronÁT!(nagybetű)".format(q))
+
+        for s in range(0, 11):
+            if   abc[s-1] == csoda:
+                
+                csoda = s
+                print(csoda, abc[s-1], )
+        if csoda != 0:
+            print("lép ki")
+            valueerror=0
+            return csoda
+            
+
 
 aArray = []
 bArray = []
@@ -65,17 +81,9 @@ for i in range (0, 10):
 
 
 for q in range(2, 6):#                                                  a jatekos hajoi
-    valueerror = 0    
-    while valueerror == 0:
-        positionx = 0
-        letterx = input("adjad meg a x {} pozitronÁT!".format(q))
-        positiony = int(input("adjad meg a y {} pozitronÁT!".format(q)))
-        answer = input("föggőleges legyene a {} hossz hajó y/n".format(q))
-        for s in range(0, 11):
-            if   abc[s-1] == letterx:
-                positionx = s
-        if positionx != 0:
-            valueerror=1
+    positionx = textToInt()
+    positiony = int(input("adjad meg a y {} pozitronÁT!".format(q)))
+    answer = input("föggőleges legyene a {} hossz hajó y/n".format(q))
   
     for index in range(q):
         if answer == "n":
@@ -87,7 +95,7 @@ for q in range(2, 6):#                                                  a jateko
 while True:
     shotAllready = 0
     shotPos = []
-    positionx = int(input("Hova lösz x : "))
+    positionx = textToInt()
     positiony = int(input("hoa lősz y?: "))
     if aArray[positiony-1][positionx-1] == 0: 
         aArray[positiony-1][positionx-1] = 2
