@@ -81,7 +81,7 @@ def nyomtat(whichPlayer):
 def textToInt():
     valueerror = 1    
     while valueerror == 1:       
-        csoda = input("adjad meg a x {} pozitronÁT!(nagybetű)".format(q))
+        csoda = input("Give the X coordinate! (A-J) ")
         hilfe = 0
         for s in range(0, 10):
             if abc[s] == csoda:
@@ -95,14 +95,13 @@ def textToInt():
 
 aArray = []
 bArray = []
-prInt = 0   #ddddddddddddddddddddddddsadasdéjfalwejflwefkkláaweefkáéfkáélwekfwkáéwaockwarlock
 fivelengthship = [6,6,6,6,6]
 fourlengthship = [5,5,5,5]
 threelengthship = [4,4,4]
 twolengthship = [3,3]
 
 ships = [twolengthship, threelengthship, fourlengthship, fivelengthship]
-
+shipsNames = ["Submarine", "Cruiser", "Mothership", "Battleship"]
 abc = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
 
 new = []
@@ -119,27 +118,29 @@ for i in range (0, 10):
 
 
 for q in range(2, 6):#                                                  a jatekos hajoi
+    print("Give the positions of the {}!  ".format(shipsNames[q-2]))
     positionx = textToInt()
-    positiony = int(input("adjad meg a y {} pozitronÁT!".format(q)))
-    answer = input("föggőleges legyene a {} hossz hajó y/n".format(q))
+    positiony = int(input("Give the Y position of the {}! (1-10) ".format(shipsNames[q-2])))
+    answer = input("Do you want the {} vertically? (Y/N) ".format(shipsNames[q-2]))
   
     for index in range(q):
-        if answer == "n":
-            aArray[positiony-1][index+positionx-1] = ships[q-2][index]
-        if answer == "y":
-            aArray[index+positiony-1][positionx-1] = ships[q-2][index]
+        if answer == "N":
+            aArray[positiony-1][index+positionx] = ships[q-2][index]
+        if answer == "Y":
+            aArray[index+positiony-1][positionx] = ships[q-2][index]
    
     nyomtat("a")
 for q in range(2, 6):#                                                  a jatekos hajoi
+    print("Kérlek add meg az")
     positionx = textToInt()
     positiony = int(input("adjad meg a y {} pozitronÁT!".format(q)))
     answer = input("föggőleges legyene a {} hossz hajó y/n".format(q))
   
     for index in range(q):
         if answer == "n":
-            bArray[positiony-1][index+positionx-1] = ships[q-2][index]
+            bArray[positiony-1][index+positionx] = ships[q-2][index]
         if answer == "y":
-            bArray[index+positiony-1][positionx-1] = ships[q-2][index]
+            bArray[index+positiony-1][positionx] = ships[q-2][index]
    
     nyomtat("b")
 while True:
