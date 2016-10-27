@@ -146,9 +146,6 @@ for q in range(2, 6):#                                                  a jateko
    
     nyomtat("b")
 while True:
-    if aArray[]
-    shotAllready = 0
-    shotPos = []
     nyomtat("aOcean")
     nyomtat("a")
     print("\n\nPlayer 1: Where would you like to shoot?")
