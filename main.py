@@ -254,7 +254,7 @@ while True:#                                                             PEW PEW
         if (aCruiser < paCruiser) and (aCruiser == 0):
             print("Player 1's Cruiser sank. ")
         paCruiser = aCruiser 
-        print("BÄMM")     
+        print("BÄMM ")     
 
     elif aArray[positiony-1][positionx] == 5:
         aArray[positiony-1][positionx] = 1
