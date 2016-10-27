@@ -17,11 +17,11 @@ def nyomtat(whichPlayer):
                 if aArray[i][o] == 2:
                     print("[O]",end="")
                 if aArray[i][o] == 3:
-                    print("[T]",end="")
+                    print("[S]",end="")
                 if aArray[i][o] == 4:
                     print("[C]",end="")
                 if aArray[i][o] == 5:
-                    print("[A]",end="")
+                    print("[M]",end="")
                 if aArray[i][o] == 6:
                     print("[B]",end="")
                 if o == 9:
@@ -35,11 +35,11 @@ def nyomtat(whichPlayer):
                 if bArray[i][o] == 2:
                     print("[O]",end="")
                 if bArray[i][o] == 3:
-                    print("[T]",end="")
+                    print("[S]",end="")
                 if bArray[i][o] == 4:
                     print("[C]",end="")
                 if bArray[i][o] == 5:
-                    print("[A]",end="")
+                    print("[M]",end="")
                 if bArray[i][o] == 6:
                     print("[B]",end="")
                 if o == 9:
@@ -125,9 +125,9 @@ for q in range(2, 6):#                                                  a jateko
   
     for index in range(q):
         if answer == "n":
-            aArray[positiony-1][index+positionx-1] = ships[q-2][index]
+            aArray[positiony-1][index+positionx] = ships[q-2][index]
         if answer == "y":
-            aArray[index+positiony-1][positionx-1] = ships[q-2][index]
+            aArray[index+positiony-1][positionx] = ships[q-2][index]
    
     nyomtat("a")
 for q in range(2, 6):#                                                  a jatekos hajoi
@@ -137,34 +137,36 @@ for q in range(2, 6):#                                                  a jateko
   
     for index in range(q):
         if answer == "n":
-            bArray[positiony-1][index+positionx-1] = ships[q-2][index]
+            bArray[positiony-1][index+positionx] = ships[q-2][index]
         if answer == "y":
-            bArray[index+positiony-1][positionx-1] = ships[q-2][index]
+            bArray[index+positiony-1][positionx] = ships[q-2][index]
    
     nyomtat("b")
 while True:
     shotAllready = 0
     shotPos = []
-    positionx = textToInt()
-    positiony = int(input("hoa lősz y?: "))
     nyomtat("aOcean")
     nyomtat("a")
-    if aArray[positiony-1][positionx-1] == 0: 
-        aArray[positiony-1][positionx-1] = 2
-        nyomtat("aOcean")
-        nyomtat("a")
-    if aArray[positiony-1][positionx-1] != 0:
-        aArray[positiony-1][positionx-1] = 1
-        nyomtat("aOcean")
-        nyomtat("a")
     positionx = textToInt()
     positiony = int(input("hoa lősz y?: "))
-    if aArray[positiony-1][positionx-1] == 0: 
-        aArray[positiony-1][positionx-1] = 2
+    if bArray[positiony-1][positionx] == 0: 
+        bArray[positiony-1][positionx] = 2
+        nyomtat("aOcean")
+        nyomtat("a")
+    if (bArray[positiony-1][positionx] == 3) or (bArray[positiony-1][positionx] == 4) or (bArray[positiony-1][positionx] == 5) or (bArray[positiony-1][positionx] == 6):
+        bArray[positiony-1][positionx] = 1
+        nyomtat("aOcean")
+        nyomtat("a")
+    nyomtat("bOcean")
+    nyomtat("b")
+    positionx = textToInt()
+    positiony = int(input("hoa lősz y?: "))
+    if aArray[positiony-1][positionx] == 0: 
+        aArray[positiony-1][positionx] = 2
         nyomtat("bOcean")
         nyomtat("b")
-    if aArray[positiony-1][positionx-1] != 0:
-        aArray[positiony-1][positionx-1] = 1
+    if (aArray[positiony-1][positionx] == 3) or (aArray[positiony-1][positionx] == 4) or (aArray[positiony-1][positionx] == 5) or (aArray[positiony-1][positionx] == 6):
+        aArray[positiony-1][positionx] = 1
         nyomtat("bOcean")
         nyomtat("b")
 
