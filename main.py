@@ -81,7 +81,7 @@ def nyomtat(whichPlayer):
 def textToInt():
     valueerror = 1    
     while valueerror == 1:       
-        csoda = input("adjad meg a x {} pozitronÁT!(nagybetű)".format(q))
+        csoda = input("Give the X coordinate! (A-J) ")
         hilfe = 0
         for s in range(0, 10):
             if abc[s] == csoda:
@@ -101,7 +101,7 @@ threelengthship = [4,4,4]
 twolengthship = [3,3]
 
 ships = [twolengthship, threelengthship, fourlengthship, fivelengthship]
-
+shipsNames = ["Submarine", "Cruiser", "Mothership", "Battleship"]
 abc = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
 
 new = []
@@ -118,9 +118,11 @@ for i in range (0, 10):
 
 
 for q in range(2, 6):#                                                  a jatekos hajoi
+    print("Give the positions of the {}!  ".format(shipsNames[q-2]))
     positionx = textToInt()
-    positiony = int(input("adjad meg a y {} pozitronÁT!".format(q)))
-    answer = input("föggőleges legyene a {} hossz hajó y/n".format(q))
+    positiony = int(input("Give the Y position of the {}! (1-10) ".format(shipsNames[q-2])))
+    answer = input("Do you want the {} vertically? (Y/N) ".format(shipsNames[q-2]))
+ 
   
     for index in range(q):
         if answer == "n":
@@ -130,9 +132,11 @@ for q in range(2, 6):#                                                  a jateko
    
     nyomtat("a")
 for q in range(2, 6):#                                                  a jatekos hajoi
+    print("Give the positions of the {}!  ".format(shipsNames[q-2]))
     positionx = textToInt()
-    positiony = int(input("adjad meg a y {} pozitronÁT!".format(q)))
-    answer = input("föggőleges legyene a {} hossz hajó y/n".format(q))
+    positiony = int(input("Give the Y position of the {}! (1-10) ".format(shipsNames[q-2])))
+    answer = input("Do you want the {} vertically? (Y/N) ".format(shipsNames[q-2]))
+  
   
     for index in range(q):
         if answer == "n":
