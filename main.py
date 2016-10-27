@@ -100,6 +100,17 @@ fourlengthship = [5,5,5,5]
 threelengthship = [4,4,4]
 twolengthship = [3,3]
 
+aSubmarine, bSubmarine = 2, 2
+aCruiser, bCruiser = 3, 3
+aMothership, bMothership = 4, 4
+aBattleship, bBattleship = 5, 5
+
+paSubmarine, pbSubmarine = 2, 2
+paCruiser, pbCruiser = 3, 3
+paMothership, pbMothership = 4, 4
+paBattleship, pbBattleship = 5, 5
+
+
 ships = [twolengthship, threelengthship, fourlengthship, fivelengthship]
 shipsNames = ["Submarine", "Cruiser", "Mothership", "Battleship"]
 abc = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
@@ -156,10 +167,35 @@ while True:
         bArray[positiony-1][positionx] = 2
         nyomtat("aOcean")
         nyomtat("a")
-    if (bArray[positiony-1][positionx] == 3) or (bArray[positiony-1][positionx] == 4) or (bArray[positiony-1][positionx] == 5) or (bArray[positiony-1][positionx] == 6):
+    #if (bArray[positiony-1][positionx] == 3) or (bArray[positiony-1][positionx] == 4) or (bArray[positiony-1][positionx] == 5) or (bArray[positiony-1][positionx] == 6):
+    if bArray[positiony-1][positionx] == 3:
         bArray[positiony-1][positionx] = 1
         nyomtat("aOcean")
+        bSubmarine -= 1
+        if (bSubmarine < paSubmarine) and (bSubmarine == 0):
+            print("Player 2's Submarine sank. ")
         nyomtat("a")
+
+    elif bArray[positiony-1][positionx] == 4:
+        bArray[positiony-1][positionx] = 1
+        nyomtat("aOcean")
+        bCruiser -= 1
+        nyomtat("a")
+
+    elif bArray[positiony-1][positionx] == 5:
+        bArray[positiony-1][positionx] = 1
+        nyomtat("aOcean")
+        bMothership -= 1
+        nyomtat("a")
+
+    elif bArray[positiony-1][positionx] == 6:  
+        bArray[positiony-1][positionx] = 1
+        nyomtat("aOcean")
+        bBattleship -= 1
+        nyomtat("a")
+
+
+
     nyomtat("bOcean")
     nyomtat("b")
     positionx = textToInt()
@@ -169,10 +205,16 @@ while True:
         nyomtat("bOcean")
         nyomtat("b")
     if (aArray[positiony-1][positionx] == 3) or (aArray[positiony-1][positionx] == 4) or (aArray[positiony-1][positionx] == 5) or (aArray[positiony-1][positionx] == 6):
+        
+        
+        
         aArray[positiony-1][positionx] = 1
         nyomtat("bOcean")
         nyomtat("b")
 
 
-
+    paSubmarine, pbSubmarine = aSubmarine, bSubmarine
+    paCruiser, pbCruiser = aCruiser, bCruiser
+    paMothership, pbMothership = aMothership, bMothership
+    paBattleship, pbBattleship = aBattleship, bBattleship
 
