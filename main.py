@@ -125,9 +125,9 @@ for q in range(2, 6):#                                                  a jateko
  
   
     for index in range(q):
-        if answer == "n":
+        if answer == "N":
             aArray[positiony-1][index+positionx] = ships[q-2][index]
-        if answer == "y":
+        if answer == "Y":
             aArray[index+positiony-1][positionx] = ships[q-2][index]
    
     nyomtat("a")
@@ -139,19 +139,21 @@ for q in range(2, 6):#                                                  a jateko
   
   
     for index in range(q):
-        if answer == "n":
+        if answer == "N":
             bArray[positiony-1][index+positionx] = ships[q-2][index]
-        if answer == "y":
+        if answer == "Y":
             bArray[index+positiony-1][positionx] = ships[q-2][index]
    
     nyomtat("b")
 while True:
+    if aArray[]
     shotAllready = 0
     shotPos = []
     nyomtat("aOcean")
     nyomtat("a")
+    print("\n\nPlayer 1: Where would you like to shoot?")
     positionx = textToInt()
-    positiony = int(input("hoa lősz y?: "))
+    positiony = int(input("Give the Y coordinate! (A-J) "))
     if bArray[positiony-1][positionx] == 0: 
         bArray[positiony-1][positionx] = 2
         nyomtat("aOcean")
@@ -162,8 +164,9 @@ while True:
         nyomtat("a")
     nyomtat("bOcean")
     nyomtat("b")
+    print("\n\nPlayer 2: Where would you like to shoot?")
     positionx = textToInt()
-    positiony = int(input("hoa lősz y?: "))
+    positiony = int(input("Give the Y coordinate! (A-J) "))
     if aArray[positiony-1][positionx] == 0: 
         aArray[positiony-1][positionx] = 2
         nyomtat("bOcean")
