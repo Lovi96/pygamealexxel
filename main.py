@@ -108,8 +108,8 @@ def textToInt():
             valueerror=0
             return csoda
            
-bArray = []
-aArray = []
+bArray = []kula
+aArray = []jancsi
 fivelengthship = [6,6,6,6,6]
 fourlengthship = [5,5,5,5]
 threelengthship = [4,4,4]=======
@@ -250,7 +250,20 @@ while True:#                                                             PEW PEW
     elif aArray[positiony-1][positionx] == 4:
         aArray[positiony-1][positionx] = 1
         nyomtat("bOcean")
-        aCruiser -= 1
+        aCruiser -= 1def textToInt():
+    valueerror = 1    
+    while valueerror == 1:       
+        csoda = input("Give the X coordinate! (A-J) ")
+        csoda = csoda.capitalize()
+        hilfe = 0
+        for s in range(0, 10):
+            if abc[s] == csoda:
+                csoda = s
+                hilfe = 1
+        if hilfe == 1:
+            valueerror=0
+            return csoda
+
         if (aCruiser < paCruiser) and (aCruiser == 0):
             print("Player 1's Cruiser sank. ")
         paCruiser = aCruiser 
