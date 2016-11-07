@@ -108,8 +108,8 @@ def playerSwitch():
     os.system('cls' if os.name=='nt' else 'clear')
 
            
-aArray = []
 bArray = []
+aArray = []
 fivelengthship = [6,6,6,6,6]
 fourlengthship = [5,5,5,5]
 threelengthship = [4,4,4]
