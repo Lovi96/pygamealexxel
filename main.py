@@ -1,7 +1,7 @@
 import os
 import time
 
-def nzyomtat(whichPlayer):
+def nyomtat(whichPlayer):
     for i in range(0, 10):
         if i == 9:
             print(i+1," ",end="")
@@ -85,6 +85,15 @@ def nzyomtat(whichPlayer):
                     print("[ ]",end="")
                 if o == 9:
                     print("\n")
+
+def playerSwitch():
+    print("Switching players!")
+    for i in range(5,0,-1):
+        print(i)
+        time.sleep(1)
+    print('\n' * 50)
+    os.system('cls' if os.name=='nt' else 'clear')
+
 def textToInt():
     valueerror = 1    
     while valueerror == 1:       
@@ -98,21 +107,12 @@ def textToInt():
         if hilfe == 1:
             valueerror=0
             return csoda
-
-def playerSwitch():
-    print("Switching players!")
-    for i in range(5,0,-1):
-        print(i)
-        time.sleep(1)
-    print('\n' * 50)
-    os.system('cls' if os.name=='nt' else 'clear')
-
            
 aArray = []
 bArray = []
 fivelengthship = [6,6,6,6,6]
 fourlengthship = [5,5,5,5]
-threelengthship = [4,4,4]
+threelengthship = [4,4,4]=======
 twolengthship = [3,3]
 
 aSubmarine, bSubmarine = 2, 2
