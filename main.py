@@ -108,8 +108,8 @@ def textToInt():
             valueerror=0
             return csoda
            
-bArray = []
-aArray = []
+aArray = [][[[[[[[[[[[[[]]]]]]]]]]]]]
+bArray = []efkéÁWKOWER
 fivelengthship = [6,6,6,6,6]
 fourlengthship = [5,5,5,5]
 threelengthship = [4,4,4]=======
