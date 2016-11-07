@@ -1,7 +1,7 @@
 import os
 import time
 
-def nzomtat(whichPlayer):
+def nzyomtat(whichPlayer):
     for i in range(0, 10):
         if i == 9:
             print(i+1," ",end="")
