@@ -2,7 +2,45 @@ import os
 import time
 
 
-def nyomtat(whichPlayer):
+def set_placee(player):
+    shipsNames = ["Submarine", "Cruiser", "Mothership", "Battleship"]
+    for q in range(2, 6):  # A jatekos hajoi
+        print("Give the positions of the {}!  ".format(shipsNames[q - 2]))
+        positionx = textToInt()
+        
+        positiony = int(input("Give the Y position of the {}! (1-10) ".format(shipsNames[q - 2])))
+        answer = input("Do you want the {} vertically? (Y/N) ".format(shipsNames[q - 2])).capitalize()
+        print(aArray[2][1])
+        if place_checke(positionx, positiony, answer, q, player):
+            for index in range(q):
+                if answer == "N":
+                    player[positiony - 1][index + positionx] = ships[q - 2][index]
+                if answer == "Y":
+                    player[index + positiony - 1][positionx] = ships[q - 2][index]
+        else:
+            print("invalid position!!")
+
+        nyomtat(player)
+
+def place_checke(x, y, orientation, lenght, player):
+    """Checks the places. If the place is out of the table, or contains ships, return False."""
+    problem = 0
+    if orientation == "Y":      #LEFELE
+        for i in range(lenght):
+            if (x>9) or ((i+y)>9) or (player[x][y] in [3, 4, 5, 6]):
+                problem = 1
+                
+    if orientation == "N":      #OLDALRAFELE
+        for i in range(lenght):
+            if ((i+x)>9) or (y>9) or (player[x][y] in [3, 4, 5, 6]):
+                problem = 1
+    if problem == 1:
+        return False
+    else:
+        return True
+
+
+def nyomtat(whichPlayer, printtype="yours"):
     for i in range(0, 10):
         if i == 9:
             print(i + 1, " ", end="")
@@ -15,75 +53,31 @@ def nyomtat(whichPlayer):
                     print(abc[p], " ", end="")
                 print("\n")
                 print("1   ", end="")
-            if whichPlayer == "a":
-                if aArray[i][o] == 0:
+            if printtype == "yours":
+                if whichPlayer[i][o] == 0:
                     print("[ ]", end="")
-                if aArray[i][o] == 1:
+                if whichPlayer[i][o] == 1:
                     print("[X]", end="")
-                if aArray[i][o] == 2:
+                if whichPlayer[i][o] == 2:
                     print("[O]", end="")
-                if aArray[i][o] == 3:
+                if whichPlayer[i][o] == 3:
                     print("[S]", end="")
-                if aArray[i][o] == 4:
+                if whichPlayer[i][o] == 4:
                     print("[C]", end="")
-                if aArray[i][o] == 5:
+                if whichPlayer[i][o] == 5:
                     print("[M]", end="")
-                if aArray[i][o] == 6:
+                if whichPlayer[i][o] == 6:
                     print("[B]", end="")
                 if o == 9:
                     print("\n")
 
-            if whichPlayer == "b":
-                if bArray[i][o] == 0:
+            if printtype == "enemy":
+                if whichPlayer[i][o] in [0, 3, 4, 5, 6]:
                     print("[ ]", end="")
-                if bArray[i][o] == 1:
+                if whichPlayer[i][o] == 1:
                     print("[X]", end="")
-                if bArray[i][o] == 2:
+                if whichPlayer[i][o] == 2:
                     print("[O]", end="")
-                if bArray[i][o] == 3:
-                    print("[S]", end="")
-                if bArray[i][o] == 4:
-                    print("[C]", end="")
-                if bArray[i][o] == 5:
-                    print("[M]", end="")
-                if bArray[i][o] == 6:
-                    print("[B]", end="")
-                if o == 9:
-                    print("\n")
-
-            if whichPlayer == "aOcean":
-                if bArray[i][o] == 0:
-                    print("[ ]", end="")
-                if bArray[i][o] == 1:
-                    print("[X]", end="")
-                if bArray[i][o] == 2:
-                    print("[O]", end="")
-                if bArray[i][o] == 3:
-                    print("[ ]", end="")
-                if bArray[i][o] == 4:
-                    print("[ ]", end="")
-                if bArray[i][o] == 5:
-                    print("[ ]", end="")
-                if bArray[i][o] == 6:
-                    print("[ ]", end="")
-                if o == 9:
-                    print("\n")
-
-            if whichPlayer == "bOcean":
-                if aArray[i][o] == 0:
-                    print("[ ]", end="")
-                if aArray[i][o] == 1:
-                    print("[X]", end="")
-                if aArray[i][o] == 2:
-                    print("[O]", end="")
-                if aArray[i][o] == 3:
-                    print("[ ]", end="")
-                if aArray[i][o] == 4:
-                    print("[ ]", end="")
-                if aArray[i][o] == 5:
-                    print("[ ]", end="")
-                if aArray[i][o] == 6:
-                    print("[ ]", end="")
                 if o == 9:
                     print("\n")
 
@@ -146,8 +140,11 @@ for i in range(0, 10):
     bArray.append(new)
     new = []
 
-nyomtat("a")
-for q in range(2, 6):  # A jatekos hajoi
+
+nyomtat(aArray)
+set_placee(aArray)
+nyomtat(aArray)
+"""for q in range(2, 6):  # A jatekos hajoi
     print("Give the positions of the {}!  ".format(shipsNames[q - 2]))
     positionx = textToInt()
     positiony = int(input("Give the Y position of the {}! (1-10) ".format(shipsNames[q - 2])))
@@ -159,10 +156,12 @@ for q in range(2, 6):  # A jatekos hajoi
             aArray[positiony - 1][index + positionx] = ships[q - 2][index]
         if answer == "Y":
             aArray[index + positiony - 1][positionx] = ships[q - 2][index]
-    nyomtat("a")
+    nyomtat("a")"""
 playerSwitch()
-nyomtat("b")
-for q in range(2, 6):  # B jatekos hajoi
+nyomtat(bArray)
+set_placee(bArray)
+nyomtat(bArray)
+"""for q in range(2, 6):  # B jatekos hajoi
     print("Give the positions of the {}!  ".format(shipsNames[q - 2]))
     positionx = textToInt()
     positiony = int(input("Give the Y position of the {}! (1-10) ".format(shipsNames[q - 2])))
@@ -174,7 +173,7 @@ for q in range(2, 6):  # B jatekos hajoi
             bArray[positiony - 1][index + positionx] = ships[q - 2][index]
         if answer == "Y":
             bArray[index + positiony - 1][positionx] = ships[q - 2][index]
-    nyomtat("b")
+    nyomtat("b")"""
 playerSwitch()
 while True:  # PEW PEW
     if (aSubmarine == 0) and (aBattleship == 0) and (aMothership == 0) and (aCruiser == 0):
@@ -183,15 +182,15 @@ while True:  # PEW PEW
     if (bSubmarine == 0) and (bBattleship == 0) and (bMothership == 0) and (bCruiser == 0):
         print("\n\nPLAYER 1 WINS!!!" * 3)
         break
-    nyomtat("a")
+    nyomtat(aArray)
     print("      ↑↑↑↑↑↑↑ Your table ↑↑↑↑↑↑↑\n      ↓↓↓↓↓↓↓ Enemy table↓↓↓↓↓↓↓")
-    nyomtat("aOcean")
+    nyomtat(bArray, "enemy")
     print("\n\nPlayer 1: Where would you like to shoot?")
     positionx = textToInt()
     positiony = int(input("Give the Y coordinate! (1-10) "))
     if bArray[positiony - 1][positionx] == 0:
         bArray[positiony - 1][positionx] = 2
-        nyomtat("aOcean")
+        nyomtat(bArray, "enemy")
         print("MISS")
 
     if bArray[positiony - 1][positionx] == 3:
