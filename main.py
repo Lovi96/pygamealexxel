@@ -6,33 +6,32 @@ def set_placee(player):
     shipsNames = ["Submarine", "Cruiser", "Mothership", "Battleship"]
     for q in range(2, 6):  # A jatekos hajoi
         print("Give the positions of the {}!  ".format(shipsNames[q - 2]))
-        positionx = textToInt()
-        
+        positionx = textToInt()        
         positiony = int(input("Give the Y position of the {}! (1-10) ".format(shipsNames[q - 2])))
+        positiony -= 1
         answer = input("Do you want the {} vertically? (Y/N) ".format(shipsNames[q - 2])).capitalize()
-        print(aArray[2][1])
-        if place_checke(positionx, positiony, answer, q, player):
+        if place_checke(positiony, positionx, answer, q, player):
             for index in range(q):
                 if answer == "N":
-                    player[positiony - 1][index + positionx] = ships[q - 2][index]
+                    player[positiony][index + positionx] = ships[q - 2][index]
                 if answer == "Y":
-                    player[index + positiony - 1][positionx] = ships[q - 2][index]
+                    player[index + positiony][positionx] = ships[q - 2][index]
         else:
             print("invalid position!!")
 
         nyomtat(player)
 
-def place_checke(x, y, orientation, lenght, player):
+def place_checke(y, x, orientation, lenght, player):
     """Checks the places. If the place is out of the table, or contains ships, return False."""
     problem = 0
     if orientation == "Y":      #LEFELE
         for i in range(lenght):
-            if (x>9) or ((i+y)>9) or (player[x][y] in [3, 4, 5, 6]):
+            if (x>9) or ((i+y)>9) or (player[y+i][x] in [3, 4, 5, 6]):
                 problem = 1
                 
     if orientation == "N":      #OLDALRAFELE
         for i in range(lenght):
-            if ((i+x)>9) or (y>9) or (player[x][y] in [3, 4, 5, 6]):
+            if ((i+x)>9) or (y>9)  or (player[y][x+i] in [3, 4, 5, 6]):
                 problem = 1
     if problem == 1:
         return False
