@@ -22,8 +22,10 @@ def set_place(player):
 
         nyomtat(player)
 
+
 def place_check(y, x, orientation, lenght, player):
     """Checks the places. If the place is out of the table, or contains ships, return False."""
+
     problem = 0
     if orientation == "Y":  # LEFELE
         for i in range(lenght):
