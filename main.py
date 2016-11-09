@@ -27,12 +27,12 @@ def place_check(y, x, orientation, lenght, player):
     problem = 0
     if orientation == "Y":  # LEFELE
         for i in range(lenght):
-            if (x > 9) or ((i + y) > 9) or (player[y + i][x] in [3, 4, 5, 6]):
+            if (x > 9) or ((i + y) > 9) or (player[y + i][x] in [1, 2, 3, 4, 5, 6]):
                 problem = 1
 
     if orientation == "N":  # OLDALRAFELE
         for i in range(lenght):
-            if ((i + x) > 9) or (y > 9) or (player[y][x + i] in [3, 4, 5, 6]):
+            if ((i + x) > 9) or (y > 9) or (player[y][x + i] in [1, 2, 3, 4, 5, 6]):
                 problem = 1
     if problem == 1:
         return False
