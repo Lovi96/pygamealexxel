@@ -23,10 +23,14 @@ def set_place(player):
         nyomtat(player)
 
 
-def place_check(y, x, orientation, lenght, player):
+def place_check(y, x, orientation="none", lenght=1, player):
     """Checks the places. If the place is out of the table, or contains ships, return False."""
 
     problem = 0
+    if orientation == "none":  # SIMAPEW
+        if (x > 9) or (y > 9) or (player[y][x] in [1, 2, 3, 4, 5, 6]):
+            problem = 1
+
     if orientation == "Y":  # LEFELE
         for i in range(lenght):
             if (x > 9) or ((i + y) > 9) or (player[y + i][x] in [1, 2, 3, 4, 5, 6]):

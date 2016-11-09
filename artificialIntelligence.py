@@ -114,4 +114,6 @@ for i in range(0, 10):
         new.append(0)
     bArray.append(new)
     new = []
+    
+set_place(aArray)
 ai_ship_placement()
