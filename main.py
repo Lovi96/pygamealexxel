@@ -2,7 +2,7 @@ import os
 import time
 
 
-def set_placee(player):
+def set_place(player):
     shipsNames = ["Submarine", "Cruiser", "Mothership", "Battleship"]
     for q in range(2, 6):  # A jatekos hajoi
         print("Give the positions of the {}!  ".format(shipsNames[q - 2]))
@@ -10,7 +10,7 @@ def set_placee(player):
         positiony = int(input("Give the Y position of the {}! (1-10) ".format(shipsNames[q - 2])))
         positiony -= 1
         answer = input("Do you want the {} vertically? (Y/N) ".format(shipsNames[q - 2])).capitalize()
-        if place_checke(positiony, positionx, answer, q, player):
+        if place_check(positiony, positionx, answer, q, player):
             for index in range(q):
                 if answer == "N":
                     player[positiony][index + positionx] = ships[q - 2][index]
@@ -21,7 +21,7 @@ def set_placee(player):
 
         nyomtat(player)
 
-def place_checke(y, x, orientation, lenght, player):
+def place_check(y, x, orientation, lenght, player):
     """Checks the places. If the place is out of the table, or contains ships, return False."""
     problem = 0
     if orientation == "Y":      #LEFELE
@@ -141,7 +141,7 @@ for i in range(0, 10):
 
 
 nyomtat(aArray)
-set_placee(aArray)
+set_place(aArray)
 nyomtat(aArray)
 """for q in range(2, 6):  # A jatekos hajoi
     print("Give the positions of the {}!  ".format(shipsNames[q - 2]))
@@ -158,7 +158,7 @@ nyomtat(aArray)
     nyomtat("a")"""
 playerSwitch()
 nyomtat(bArray)
-set_placee(bArray)
+set_place(bArray)
 nyomtat(bArray)
 """for q in range(2, 6):  # B jatekos hajoi
     print("Give the positions of the {}!  ".format(shipsNames[q - 2]))
