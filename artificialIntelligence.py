@@ -81,9 +81,9 @@ def ai_shooting():
     while True:
         xCoord = random.randint(0, 9)
         yCoord = random.randint(0, 9)
-        if place_check(yCoord, xCoord, player=aArray):
-            if (aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
-            (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6):
+        if place_check(yCoord, xCoord, "none", 1, player=aArray):
+            if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
+                    (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
                 aArray[yCoord][xCoord] = 1
                 break
             elif (aArray[yCoord][xCoord] == 0):
@@ -130,4 +130,8 @@ for i in range(0, 10):
         new.append(0)
     bArray.append(new)
     new = []
-ai_ship_placement()
+# ai_ship_placement()
+while True:
+
+    ai_shooting()
+    nyomtat(bArray, "enemy")
