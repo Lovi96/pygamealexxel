@@ -16,7 +16,10 @@ def place_checke(x, y, orientation, lenght, player):
         return False
     else:
         return True
-
+fivelengthship = [6, 6, 6, 6, 6]
+fourlengthship = [5, 5, 5, 5]
+threelengthship = [4, 4, 4]
+twolengthship = [3, 3]
 aArray = []
 bArray = []
 
