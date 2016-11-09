@@ -1,6 +1,11 @@
 import random
 # from main import *
 
+randomShooting = 1
+
+setBombardment = 0
+shootDir = 1
+
 
 def nyomtat(whichPlayer, printtype="yours"):
     for i in range(0, 10):
@@ -69,6 +74,7 @@ def place_check(y, x, orientation, lenght, player):
 
     if orientation == "N":  # OLDALRAFELE
         for i in range(lenght):
+
             if ((i + x) > 9) or (y > 9) or (player[y][x + i] in [3, 4, 5, 6]):
                 problem = 1
     if problem == 1:
@@ -77,20 +83,105 @@ def place_check(y, x, orientation, lenght, player):
         return True
 
 
-def ai_shooting():
-    while True:
-        xCoord = random.randint(0, 9)
-        yCoord = random.randint(0, 9)
-        if place_check(yCoord, xCoord, "none", 1, player=aArray):
+def bombardment(coords2):
+    print(coords2)
+    yCoord = coords2[0]
+    xCoord = coords2[1]
+    while randomShooting == 0 and setBombardment == 1:
+        if (place_check(yCoord, xCoord, "none", 1, aArray) and shootDir == 1):
             if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
                     (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
                 aArray[yCoord][xCoord] = 1
+                yCoord += 1
+
+        if (place_check(yCoord, xCoord, "none", 1, aArray) and shootDir == 2):
+            if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
+                    (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
+                aArray[yCoord][xCoord] = 1
+                xCoord += 1
+
+        if (place_check(yCoord, xCoord, "none", 1, aArray) and shootDir == 3):
+            if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
+                    (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
+                aArray[yCoord][xCoord] = 1
+                yCoord -= 1
+
+        if (place_check(yCoord, xCoord, "none", 1, aArray) and shootDir == 4):
+            if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
+                    (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
+                aArray[yCoord][xCoord] = 1
+                xCoord -= 1
+
+
+def pos_checker(coords):
+    global randomShooting
+    global shootDir
+    yCoord = coords[0]
+    print(yCoord)
+    xCoord = coords[1]
+    print(xCoord)
+    #randomShooting = 0
+    global setBombardment
+    while randomShooting == 0 and setBombardment == 0:
+        if (place_check(yCoord + 1, xCoord, "none", 1, aArray)) and (shootDir == 1):
+            yCoord += 1
+            if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
+                    (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
+                aArray[yCoord][xCoord] = 1
+                setBombardment = 1
+                return yCoord, xCoord
                 break
+            else:
+                shootDir += 1
+        if (place_check(yCoord, xCoord + 1, "none", 1, aArray)) and (shootDir == 2):
+            xCoord += 1
+            if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
+                    (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
+                aArray[yCoord][xCoord] = 1
+                setBombardment = 1
+                return yCoord, xCoord
+                break
+            else:
+                shootDir += 1
+        if (place_check(yCoord - 1, xCoord, "none", 1, aArray)) and (shootDir == 3):
+            yCoord -= 1
+            if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
+                    (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
+                aArray[yCoord][xCoord] = 1
+                setBombardment = 1
+                return yCoord, xCoord
+                break
+            else:
+                shootDir += 1
+        if (place_check(yCoord, xCoord - 1, "none", 1, aArray)) and (shootDir == 4):
+            xCoord -= 1
+            if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
+                    (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
+                aArray[yCoord][xCoord] = 1
+                setBombardment = 1
+                return yCoord, xCoord
+                break
+        shootDir = 0
+        randomShooting = 1
+        break
+
+
+def ai_shooting():
+    global randomShooting
+    while randomShooting == 1:
+        xCoord = random.randint(0, 9)
+        yCoord = random.randint(0, 9)
+        if place_check(yCoord, xCoord, "none", 1, aArray):
+            if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
+                    (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
+                aArray[yCoord][xCoord] = 1
+                nyomtat(aArray)
+                return yCoord, xCoord
+                randomShooting = 0
+                break
+
             elif (aArray[yCoord][xCoord] == 0):
                 aArray[yCoord][xCoord] = 2
-                break
-        else:
-            continue
 
 
 def ai_ship_placement():
@@ -103,18 +194,18 @@ def ai_ship_placement():
                 verticalPlacement = "N"
             if verticalPlacement == 1:
                 verticalPlacement = "Y"
-            if place_check(yCoord, xCoord, verticalPlacement, q, bArray):
+            if place_check(yCoord, xCoord, verticalPlacement, q, aArray):
                 for index in range(q):
                     if verticalPlacement == "N":
-                        bArray[yCoord][index + xCoord] = ships[q - 2][index]
+                        aArray[yCoord][index + xCoord] = ships[q - 2][index]
                     if verticalPlacement == "Y":
-                        bArray[index + yCoord][xCoord] = ships[q - 2][index]
+                        aArray[index + yCoord][xCoord] = ships[q - 2][index]
             else:
                 continue
             break
-    nyomtat(bArray)
+    nyomtat(aArray)
 
-bArray = []
+aArray = []
 fivelengthship = [6, 6, 6, 6, 6]
 fourlengthship = [5, 5, 5, 5]
 threelengthship = [4, 4, 4]
@@ -128,11 +219,15 @@ new = []
 for i in range(0, 10):
     for j in range(0, 10):
         new.append(0)
-    bArray.append(new)
+    aArray.append(new)
     new = []
-    
-set_place(aArray)
+randomShooting = 1
+# set_place(aArray)
 ai_ship_placement()
+"""print(type(ai_shooting()))
+print(ai_shooting())
+pos_checker(ai_shooting())"""
+bombardment(pos_checker(ai_shooting()))
 # while True:
 
 #    ai_shooting()
