@@ -1,15 +1,15 @@
 def place_checke(x, y, orientation, lenght, player):
     """Checks the places. If the place is out of the table, or contains ships, return False."""
     problem = 0
-    if orientation == "Y":      #LEFELE
+    if orientation == "Y":  # LEFELE
         for i in range(lenght):
-            if (x>9) or (y>9) or (player[x][y] in [3, 4, 5, 6]):
+            if (x > 9) or (y > 9) or (player[x][y] in [3, 4, 5, 6]):
                 problem = 1
             y += 1
-                
-    if orientation == "N":      #OLDALRAFELE
+
+    if orientation == "N":  # OLDALRAFELE
         for i in range(lenght):
-            if (x>9) or (y>9) or (player[x][y] in [3, 4, 5, 6]):
+            if (x > 9) or (y > 9) or (player[x][y] in [3, 4, 5, 6]):
                 problem = 1
             x += 1
     if problem == 1:
