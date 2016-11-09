@@ -1,5 +1,6 @@
 import os
 import time
+import random
 
 
 def set_place(player):
@@ -105,6 +106,28 @@ def playerSwitch():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
+def ai_ship_placement():
+    for q in range(2, 6):
+        while True:
+            xCoord = random.randint(0, 9)
+            yCoord = random.randint(0, 9)
+            verticalPlacement = random.randint(0, 1)
+            if verticalPlacement == 0:
+                verticalPlacement = "N"
+            if verticalPlacement == 1:
+                verticalPlacement = "Y"
+            if place_check(yCoord, xCoord, verticalPlacement, q, bArray):
+                for index in range(q):
+                    if verticalPlacement == "N":
+                        bArray[yCoord][index + xCoord] = ships[q - 2][index]
+                    if verticalPlacement == "Y":
+                        bArray[index + yCoord][xCoord] = ships[q - 2][index]
+            else:
+                continue
+            break
+    nyomtat(bArray)
+
+
 aArray = []
 bArray = []
 fivelengthship = [6, 6, 6, 6, 6]
@@ -140,39 +163,14 @@ for i in range(0, 10):
     new = []
 
 
-nyomtat(aArray)
 set_place(aArray)
-nyomtat(aArray)
-"""for q in range(2, 6):  # A jatekos hajoi
-    print("Give the positions of the {}!  ".format(shipsNames[q - 2]))
-    positionx = textToInt()
-    positiony = int(input("Give the Y position of the {}! (1-10) ".format(shipsNames[q - 2])))
-    answer = input("Do you want the {} vertically? (Y/N) ".format(shipsNames[q - 2]))
-    answer = answer.capitalize()
+ai_ship_placement()
 
-    for index in range(q):
-        if answer == "N":
-            aArray[positiony - 1][index + positionx] = ships[q - 2][index]
-        if answer == "Y":
-            aArray[index + positiony - 1][positionx] = ships[q - 2][index]
-    nyomtat("a")"""
 playerSwitch()
 nyomtat(bArray)
 set_place(bArray)
 nyomtat(bArray)
-"""for q in range(2, 6):  # B jatekos hajoi
-    print("Give the positions of the {}!  ".format(shipsNames[q - 2]))
-    positionx = textToInt()
-    positiony = int(input("Give the Y position of the {}! (1-10) ".format(shipsNames[q - 2])))
-    answer = input("Do you want the {} vertically? (Y/N) ".format(shipsNames[q - 2]))
-    answer = answer.capitalize()
 
-    for index in range(q):
-        if answer == "N":
-            bArray[positiony - 1][index + positionx] = ships[q - 2][index]
-        if answer == "Y":
-            bArray[index + positiony - 1][positionx] = ships[q - 2][index]
-    nyomtat("b")"""
 playerSwitch()
 while True:  # PEW PEW
     if (aSubmarine == 0) and (aBattleship == 0) and (aMothership == 0) and (aCruiser == 0):
