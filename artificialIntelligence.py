@@ -85,83 +85,104 @@ def place_check(y, x, orientation, lenght, player):
 
 def bombardment(coords2):
     print(coords2)
+    global aArray
+    print(shootDir)
+    global setBombardment
+    global randomShooting
     yCoord = coords2[0]
     xCoord = coords2[1]
     while randomShooting == 0 and setBombardment == 1:
-        if (place_check(yCoord, xCoord, "none", 1, aArray) and shootDir == 1):
-            if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
-                    (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
+        if (shootDir == 1):
+            yCoord -= 1
+            nyomtat(aArray)
+            if (aArray[yCoord][xCoord] == 3):
                 aArray[yCoord][xCoord] = 1
-                yCoord += 1
+                break
 
-        if (place_check(yCoord, xCoord, "none", 1, aArray) and shootDir == 2):
+        elif (shootDir == 2):
             if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
                     (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
                 aArray[yCoord][xCoord] = 1
                 xCoord += 1
+                break
 
-        if (place_check(yCoord, xCoord, "none", 1, aArray) and shootDir == 3):
+        elif (shootDir == 3):
             if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
                     (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
                 aArray[yCoord][xCoord] = 1
                 yCoord -= 1
+                break
 
-        if (place_check(yCoord, xCoord, "none", 1, aArray) and shootDir == 4):
+        elif (shootDir == 4):
             if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
                     (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
                 aArray[yCoord][xCoord] = 1
                 xCoord -= 1
+                break
 
 
 def pos_checker(coords):
     global randomShooting
     global shootDir
     yCoord = coords[0]
+    print(shootDir)
     print(yCoord)
     xCoord = coords[1]
     print(xCoord)
-    #randomShooting = 0
+    # randomShooting = 0
     global setBombardment
     while randomShooting == 0 and setBombardment == 0:
-        if (place_check(yCoord + 1, xCoord, "none", 1, aArray)) and (shootDir == 1):
-            yCoord += 1
-            if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
-                    (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
-                aArray[yCoord][xCoord] = 1
-                setBombardment = 1
-                return yCoord, xCoord
-                break
-            else:
-                shootDir += 1
-        if (place_check(yCoord, xCoord + 1, "none", 1, aArray)) and (shootDir == 2):
-            xCoord += 1
-            if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
-                    (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
-                aArray[yCoord][xCoord] = 1
-                setBombardment = 1
-                return yCoord, xCoord
-                break
-            else:
-                shootDir += 1
-        if (place_check(yCoord - 1, xCoord, "none", 1, aArray)) and (shootDir == 3):
+        if (shootDir == 1):
             yCoord -= 1
             if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
                     (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
                 aArray[yCoord][xCoord] = 1
                 setBombardment = 1
                 return yCoord, xCoord
-                break
-            else:
+
+            elif (aArray[yCoord][xCoord] == 0):
+                aArray[yCoord][xCoord] = 2
                 shootDir += 1
-        if (place_check(yCoord, xCoord - 1, "none", 1, aArray)) and (shootDir == 4):
+                return yCoord, xCoord
+
+        elif (shootDir == 2):
+            xCoord += 1
+            if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
+                    (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
+                aArray[yCoord][xCoord] = 1
+                setBombardment = 1
+                return yCoord, xCoord
+
+            else:
+                aArray[yCoord][xCoord] = 2
+                shootDir += 1
+                return yCoord, xCoord
+
+        elif (shootDir == 3):
+            yCoord += 1
+            if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
+                    (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
+                aArray[yCoord][xCoord] = 1
+                setBombardment = 1
+                return yCoord, xCoord
+
+            else:
+                aArray[yCoord][xCoord] = 2
+                shootDir += 1
+                return yCoord, xCoord
+
+        elif (shootDir == 4):
             xCoord -= 1
             if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
                     (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
                 aArray[yCoord][xCoord] = 1
                 setBombardment = 1
                 return yCoord, xCoord
-                break
-        shootDir = 0
+            elif (aArray[yCoord][xCoord] == 0):
+                aArray[yCoord][xCoord] = 2
+                return yCoord, xCoord
+
+        shootDir = 1
         randomShooting = 1
         break
 
@@ -176,9 +197,8 @@ def ai_shooting():
                     (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
                 aArray[yCoord][xCoord] = 1
                 nyomtat(aArray)
-                return yCoord, xCoord
                 randomShooting = 0
-                break
+                return yCoord, xCoord
 
             elif (aArray[yCoord][xCoord] == 0):
                 aArray[yCoord][xCoord] = 2
@@ -210,7 +230,8 @@ fivelengthship = [6, 6, 6, 6, 6]
 fourlengthship = [5, 5, 5, 5]
 threelengthship = [4, 4, 4]
 twolengthship = [3, 3]
-
+xCoord = 1
+yCoord = 1
 
 ships = [twolengthship, threelengthship, fourlengthship, fivelengthship]
 shipsNames = ["Submarine", "Cruiser", "Mothership", "Battleship"]
@@ -227,7 +248,8 @@ ai_ship_placement()
 """print(type(ai_shooting()))
 print(ai_shooting())
 pos_checker(ai_shooting())"""
-bombardment(pos_checker(ai_shooting()))
+while True:
+    bombardment(pos_checker(ai_shooting()))
 # while True:
 
 #    ai_shooting()
