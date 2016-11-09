@@ -39,6 +39,7 @@ def nyomtat(whichPlayer, printtype="yours"):
                 if o == 9:
                     print("\n")
 
+
 def textToInt():
     valueerror = 1
     while valueerror == 1:
@@ -52,22 +53,25 @@ def textToInt():
         if hilfe == 1:
             valueerror = 0
             return csoda
+
+
 def place_check(y, x, orientation, lenght, player):
     """Checks the places. If the place is out of the table, or contains ships, return False."""
     problem = 0
-    if orientation == "Y":      #LEFELE
+    if orientation == "Y":  # LEFELE
         for i in range(lenght):
-            if (x>9) or ((i+y)>9) or (player[y+i][x] in [3, 4, 5, 6]):
+            if (x > 9) or ((i + y) > 9) or (player[y + i][x] in [3, 4, 5, 6]):
                 problem = 1
-                
-    if orientation == "N":      #OLDALRAFELE
+
+    if orientation == "N":  # OLDALRAFELE
         for i in range(lenght):
-            if ((i+x)>9) or (y>9)  or (player[y][x+i] in [3, 4, 5, 6]):
+            if ((i + x) > 9) or (y > 9) or (player[y][x + i] in [3, 4, 5, 6]):
                 problem = 1
     if problem == 1:
         return False
     else:
         return True
+
 
 def set_place(player):
     shipsNames = ["Submarine", "Cruiser", "Mothership", "Battleship"]
@@ -75,7 +79,7 @@ def set_place(player):
         while True:
 
             print("Give the positions of the {}!  ".format(shipsNames[q - 2]))
-            positionx = textToInt()        
+            positionx = textToInt()
             positiony = int(input("Give the Y position of the {}! (1-10) ".format(shipsNames[q - 2])))
             positiony -= 1
             answer = input("Do you want the {} vertically? (Y/N) ".format(shipsNames[q - 2])).capitalize()
@@ -97,16 +101,16 @@ fivelengthship = [6, 6, 6, 6, 6]
 fourlengthship = [5, 5, 5, 5]
 threelengthship = [4, 4, 4]
 twolengthship = [3, 3]
-aArray = [[4,4,4,4,0,0,0,0,0,0],
-          [0,0,0,0,0,0,0,0,0,0],
-          [0,0,0,0,4,0,0,0,0,4],
-          [0,0,0,0,4,0,0,0,0,4],
-          [0,0,0,0,4,0,0,0,0,4],
-          [0,0,0,0,4,0,0,0,0,4],
-          [0,0,0,0,0,0,0,0,0,0],
-          [0,0,0,0,0,0,0,0,0,0],
-          [0,0,0,0,0,0,0,0,0,0],
-          [0,0,0,0,0,4,4,4,4,4]]
+aArray = [[4, 4, 4, 4, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 4, 0, 0, 0, 0, 4],
+          [0, 0, 0, 0, 4, 0, 0, 0, 0, 4],
+          [0, 0, 0, 0, 4, 0, 0, 0, 0, 4],
+          [0, 0, 0, 0, 4, 0, 0, 0, 0, 4],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 4, 4, 4, 4, 4]]
 
 set_place(aArray)
 print("végem :)\n")
