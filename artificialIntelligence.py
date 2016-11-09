@@ -77,6 +77,22 @@ def place_check(y, x, orientation, lenght, player):
         return True
 
 
+def ai_shooting():
+    while True:
+        xCoord = random.randint(0, 9)
+        yCoord = random.randint(0, 9)
+        if place_check(yCoord, xCoord, player=aArray):
+            if (aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
+            (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6):
+                aArray[yCoord][xCoord] = 1
+                break
+            elif (aArray[yCoord][xCoord] == 0):
+                aArray[yCoord][xCoord] = 2
+                break
+        else:
+            continue
+
+
 def ai_ship_placement():
     for q in range(2, 6):
         while True:
