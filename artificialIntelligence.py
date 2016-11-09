@@ -1,5 +1,5 @@
 import random
-#from main import *
+# from main import *
 
 
 def nyomtat(whichPlayer, printtype="yours"):
@@ -130,8 +130,8 @@ for i in range(0, 10):
         new.append(0)
     bArray.append(new)
     new = []
-# ai_ship_placement()
-while True:
+ai_ship_placement()
+# while True:
 
-    ai_shooting()
-    nyomtat(bArray, "enemy")
+#    ai_shooting()
+#    nyomtat(bArray, "enemy")
