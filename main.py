@@ -2,6 +2,7 @@ import os
 import time
 import random
 
+
 def table_init():
     new = []
     for i in range(0, 10):  # tömbök inicializálása
@@ -14,6 +15,7 @@ def table_init():
             new.append(0)
         bArray.append(new)
         new = []
+
 
 def nyomtat(whichPlayer, printtype="yours"):
     for i in range(0, 10):
@@ -57,8 +59,6 @@ def nyomtat(whichPlayer, printtype="yours"):
                     print("\n")
 
 
-
-
 def textToInt():
     while True:
         input_char = input("Give the X coordinate! (A-J) ")
@@ -75,12 +75,11 @@ def textToInt():
             continue
 
 
-
 def validInt():
     while True:
         inputint = input("Please add the Y coodrinate! (1-10) ")
         if inputint == "exit":
-            print("\nThe program will exit now. Bye!")            
+            print("\nThe program will exit now. Bye!")
             exit()
         if inputint == "":
             print("\nYou did not added anything\n")
@@ -95,13 +94,13 @@ def validInt():
         except ValueError:
             print("\nThis is not a number!\n")
             continue
-    
+
 
 def orientation():
     while True:
         inputOrientation = input("Do you want it vertically? (Y/N) ")
         if inputOrientation == "exit":
-            print("\nThe program will exit now. Bye!") 
+            print("\nThe program will exit now. Bye!")
             exit()
         if inputOrientation in ["y", "Y", "n", "N"]:
             inputOrientation = inputOrientation.capitalize()
@@ -109,7 +108,6 @@ def orientation():
         else:
             print("\nWrong answer!\n")
             continue
-
 
 
 def set_place(player):
@@ -165,21 +163,21 @@ def pew(player):
     global aArray, bArray
     Submarine, Cruiser, Mothership, Battleship, pSubmarine, pCruiser, pMothership, pBattleship = 0, 0, 0, 0, 0, 0, 0, 0
     if player == "Player 2":
-         array = aArray
-         self_Array = bArray
-         Submarine, Cruiser, Mothership, Battleship = aSubmarine, aCruiser, aMothership, aBattleship
-         pSubmarine, pCruiser, pMothership, pBattleship = paSubmarine, paCruiser, paMothership, paBattleship
+        array = aArray
+        self_Array = bArray
+        Submarine, Cruiser, Mothership, Battleship = aSubmarine, aCruiser, aMothership, aBattleship
+        pSubmarine, pCruiser, pMothership, pBattleship = paSubmarine, paCruiser, paMothership, paBattleship
     if player == "Player 1":
         array = bArray
         self_Array = aArray
         Submarine, Cruiser, Mothership, Battleship = bSubmarine, bCruiser, bMothership, bBattleship
         Submarine, Cruiser, Mothership, Battleship = pbSubmarine, pbCruiser, pbMothership, pbBattleship
     nyomtat(self_Array)
-    #print("      ↑↑↑↑↑↑↑ Your table ↑↑↑↑↑↑↑\n      ↓↓↓↓↓↓↓ Enemy table↓↓↓↓↓↓↓") #cucccccccccccccccccccccccccc
+    print("      ↑↑↑↑↑↑↑ Your table ↑↑↑↑↑↑↑\n      ↓↓↓↓↓↓↓ Enemy table↓↓↓↓↓↓↓")  # cucccccccccccccccccccccccccc
     print("fent a tiéd, lent az ellenfélé")
     nyomtat(array, "enemy")
     while True:
-        print("This is your turn, ",player,". Take your shoot! ")
+        print("This is your turn, ", player, ". Take your shoot! ")
         positionx = textToInt()
         positiony = validInt() - 1
         if place_check(positiony, positionx, "none", 1, array):
@@ -193,7 +191,7 @@ def pew(player):
                 nyomtat(array, "enemy")
                 Submarine -= 1
                 if (Submarine < pSubmarine) and (Submarine == 0):
-                    print(player,"'s Submarine sank. ")
+                    print(player, "'s Submarine sank. ")
                 pSubmarine = Submarine
                 print("BÄMM")
 
@@ -202,7 +200,7 @@ def pew(player):
                 nyomtat(array, "enemy")
                 Cruiser -= 1
                 if (Cruiser < pCruiser) and (Cruiser == 0):
-                    print(player,"'s Cruiser sank. ")
+                    print(player, "'s Cruiser sank. ")
                 pCruiser = Cruiser
                 print("BÄMM")
 
@@ -211,7 +209,7 @@ def pew(player):
                 nyomtat(array, "enemy")
                 Mothership -= 1
                 if (Mothership < pMothership) and (Mothership == 0):
-                    print(player,"'s Mothership sank. ")
+                    print(player, "'s Mothership sank. ")
                 pMothership = Mothership
                 print("BÄMM")
 
@@ -220,7 +218,7 @@ def pew(player):
                 nyomtat(array, "enemy")
                 Battleship -= 1
                 if (Battleship < pBattleship) and (Battleship == 0):
-                    print(player,"'s Battleship sank. ")
+                    print(player, "'s Battleship sank. ")
                 pBattleship = Battleship
                 print("BÄMM")
 
@@ -230,12 +228,13 @@ def pew(player):
             if player == "Player 1":
                 bSubmarine, bCruiser, bMothership, bBattleship = Submarine, Cruiser, Mothership, Battleship
                 pbSubmarine, pbCruiser, pbMothership, pbBattleship = Submarine, Cruiser, Mothership, Battleship
-            
+
             break
         else:
             ("Invalid location! Try again! ")
             continue
     playerSwitch()
+
 
 def playerSwitch():
     input("Press enter if you done ")
@@ -255,12 +254,13 @@ def check_win():
         print("\n\nPLAYER 1 WINS!!!" * 3)
         exit()
 
+
 def PVP():
     input("\nNow, you will place the ships. Player 1 starts first.\nPress enter to continue\n")
     table_init()
     set_place(aArray)
     playerSwitch()
-    input("\nNow player 2 place their ships.\n")    
+    input("\nNow player 2 place their ships.\n")
     set_place(bArray)
     while True:
         pew("Player 1")
@@ -278,7 +278,6 @@ def PVE():
         pew(aArray)
         check_win
         # to be continued
-
 
 
 def ai_ship_placement():
@@ -303,8 +302,6 @@ def ai_ship_placement():
     nyomtat(bArray)
 
 
-
-
 aArray = []
 bArray = []
 fivelengthship = [6, 6, 6, 6, 6]
@@ -327,10 +324,7 @@ ships = [twolengthship, threelengthship, fourlengthship, fivelengthship]
 shipNames = ["Submarine", "Cruiser", "Mothership", "Battleship"]
 abc = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
 
-
-
-
-#ez itt a main
+# ez itt a main
 
 print("Welcome to our game!\n\nYou can choose between two game type:\nPress P for the PVP (play against real player) or")
 print('Press E for the PVE (play against the computer)\n\nRemember, you can always quit, if you type "exit"\nHave fun :)')
@@ -345,8 +339,6 @@ while True:
         exit()
     else:
         continue
-
-
 
 
 """" debug tools :D

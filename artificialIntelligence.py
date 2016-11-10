@@ -64,25 +64,6 @@ def textToInt():
             return csoda
 
 
-def place_check(y, x, orientation, lenght, player):
-    """Checks the places. If the place is out of the table, or contains ships, return False."""
-    problem = 0
-    if orientation == "Y":  # LEFELE
-        for i in range(lenght):
-            if (x > 9) or ((i + y) > 9) or (player[y + i][x] in [3, 4, 5, 6]):
-                problem = 1
-
-    if orientation == "N":  # OLDALRAFELE
-        for i in range(lenght):
-
-            if ((i + x) > 9) or (y > 9) or (player[y][x + i] in [3, 4, 5, 6]):
-                problem = 1
-    if problem == 1:
-        return False
-    else:
-        return True
-
-
 def bombardment(coords2):
     print(coords2)
     global aArray
@@ -119,6 +100,29 @@ def bombardment(coords2):
                 aArray[yCoord][xCoord] = 1
                 xCoord -= 1
                 break
+
+
+def place_check(y, x, orientation, lenght, player):
+    """Checks the places. If the place is out of the table, or contains ships, return False."""
+
+    problem = 0
+    if orientation == "none":  # SIMAPEW
+        if (x > 9) or (y > 9) or (player[y][x] in [1, 2]):
+            problem = 1
+
+    if orientation == "Y":  # LEFELE
+        for i in range(lenght):
+            if (x > 9) or ((i + y) > 9) or (player[y + i][x] in [1, 2, 3, 4, 5, 6]):
+                problem = 1
+
+    if orientation == "N":  # OLDALRAFELE
+        for i in range(lenght):
+            if ((i + x) > 9) or (y > 9) or (player[y][x + i] in [1, 2, 3, 4, 5, 6]):
+                problem = 1
+    if problem == 1:
+        return False
+    else:
+        return True
 
 
 def pos_checker(coords):
