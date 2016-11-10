@@ -243,7 +243,7 @@ def playerSwitch():
     for i in range(5, 0, -1):
         print(i)
         time.sleep(1)
-    print('\n' * 50)
+    print('\n' * 10)
 
 
 def check_win():
