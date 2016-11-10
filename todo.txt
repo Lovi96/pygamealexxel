@@ -5,3 +5,7 @@
 mothership = 6 6 6 6 feleslegessé vált elég lene 6
 
  ↑↑↑↑↑↑↑ Your table ↑↑↑↑↑↑↑
+
+ universal inputcheck
+
+ printnél a player a saját hajóját lövi le de ez kamu

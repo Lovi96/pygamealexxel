@@ -289,11 +289,20 @@ def player_switch():
 
 def check_win():
     """This function finds out, who is the winner."""
+    a, b = 0, 0
+    for y in range(0, 9):
+        for x in range(0, 9):
+            if a_array[y][x] == 1:
+                a += 1
+    for y in range(0, 9):
+        for x in range(0, 9):
+            if b_array[y][x] == 1:
+                b += 1
 
-    if (a_submarine == 0) and (a_battleship == 0) and (a_mothership == 0) and (a_cruiser == 0):
+    if ((a_submarine == 0) and (a_battleship == 0) and (a_mothership == 0) and (a_cruiser == 0)) or (a > 13):
         print("\n\nPLAYER 2 WINS!!!" * 3)
         exit()
-    if (b_submarine == 0) and (b_battleship == 0) and (b_mothership == 0) and (b_cruiser == 0):
+    if ((b_submarine == 0) and (b_battleship == 0) and (b_mothership == 0) and (b_cruiser == 0)) or (b > 13):
         print("\n\nPLAYER 1 WINS!!!" * 3)
         exit()
 
