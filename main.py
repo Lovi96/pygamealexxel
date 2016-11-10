@@ -4,8 +4,10 @@ import random
 
 
 def table_init():
+    """Initializes the tables."""
+    
     new = []
-    for i in range(0, 10):  # tömbök inicializálása
+    for i in range(0, 10):
         for j in range(0, 10):
             new.append(0)
         a_array.append(new)
@@ -18,6 +20,8 @@ def table_init():
 
 
 def ai_shooting():
+    """The AI takes a valid shoot to a random place."""
+
     global random_shooting
     while random_shooting == 1:
         x_coord = random.randint(0, 9)
@@ -36,6 +40,10 @@ def ai_shooting():
 
 
 def nyomtat(which_player, printtype="yours"):
+    """Prints the talbe with nice format.
+    If the printtype is "enemy", it prints only the hit or miss mark.
+    If the printtype is on the default value, it prints the untouched ships too."""
+
     for i in range(0, 10):
         if i == 9:
             print(i + 1, " ", end="")
@@ -78,11 +86,12 @@ def nyomtat(which_player, printtype="yours"):
 
 
 def text_to_int():
+    """Converts a given char (A-J) to the corresponding number. (A = 0, J = 9)"""
+
     while True:
         input_char = input("Give the X coordinate! (A-J) ")
         if input_char == "cheat":
-            # cheat()
-            cheat2()
+            cheat()
         if input_char == "exit":
             print("\nThe program will exit now. Bye!")
             exit()
@@ -97,6 +106,8 @@ def text_to_int():
 
 
 def valid_int():
+    """Checks the given number."""
+    
     while True:
         inputint = input("Please add the Y coodrinate! (1-10) ")
         if inputint == "exit":
@@ -118,6 +129,7 @@ def valid_int():
 
 
 def orientation():
+    """Checks the orientation key."""
     while True:
         input_orientation = input("Do you want it vertically? (Y/N) ")
         if input_orientation == "exit":
@@ -132,6 +144,8 @@ def orientation():
 
 
 def set_place(player):
+    """Places the ships."""
+
     nyomtat(player)
     ship_names = ["Submarine", "Cruiser", "Mothership", "Battleship"]
     for q in range(2, 6):  # A jatekos hajoi
@@ -158,7 +172,7 @@ def place_check(y, x, orientation, lenght, player):
     """Checks the places. If the place is out of the table, or contains ships, return False."""
 
     problem = 0
-    if orientation == "none":  # SIMAPEW
+    if orientation == "none":  # SIMAshoot
         if (x > 9) or (y > 9) or (y < 0) or (x < 0) or (player[y][x] in [1, 2]):
             problem = 1
 
@@ -177,7 +191,9 @@ def place_check(y, x, orientation, lenght, player):
         return True
 
 
-def pew(player):
+def shoot(player):
+    """A players can take their shots. There is a feedback if the shot is a hit, a miss, or a ship shink."""
+
     array = []
     self_array = []
     global a_submarine, b_submarine, a_cruiser, b_cruiser, a_mothership, b_mothership, a_battleship, b_battleship
@@ -194,9 +210,10 @@ def pew(player):
         array = b_array
         self_array = a_array
         submarine, cruiser, mothership, battleship = b_submarine, b_cruiser, b_mothership, b_battleship
-        submarine, cruiser, mothership, battleship = pb_submarine, pb_cruiser, pb_mothership, pb_battleship
+        p_submarine, p_cruiser, p_mothership, p_battleship = pb_submarine, pb_cruiser, pb_mothership, pb_battleship
     nyomtat(self_array)
-    print("      ↑↑↑↑↑↑↑ Your table ↑↑↑↑↑↑↑\n      ↓↓↓↓↓↓↓ Enemy table↓↓↓↓↓↓↓")
+    #print("      ↑↑↑↑↑↑↑ Your table ↑↑↑↑↑↑↑\n      ↓↓↓↓↓↓↓ Enemy table↓↓↓↓↓↓↓")
+    print("fent tiedé, lent enemy")
     nyomtat(array, "enemy")
     while True:
         print("This is your turn, ", player, ". Take your shoot! ")
@@ -259,6 +276,8 @@ def pew(player):
 
 
 def player_switch():
+    """Helps to stay the coords of the enemy ships secret."""
+
     input("Press enter if you done ")
     os.system('cls' if os.name == 'nt' else 'clear')
     print("Switching players!")
@@ -269,6 +288,8 @@ def player_switch():
 
 
 def check_win():
+    """This function finds out, who is the winner."""
+
     if (a_submarine == 0) and (a_battleship == 0) and (a_mothership == 0) and (a_cruiser == 0):
         print("\n\nPLAYER 2 WINS!!!" * 3)
         exit()
@@ -278,6 +299,8 @@ def check_win():
 
 
 def player_versus_player():
+    """Ship placing and battle until one of the player dies."""
+
     input("\nNow, you will place the ships. Player 1 starts first.\nPress enter to continue\n")
     table_init()
     set_place(a_array)
@@ -285,21 +308,22 @@ def player_versus_player():
     input("\nNow player 2 place their ships.\n")
     set_place(b_array)
     while True:
-        pew("Player 1")
+        shoot("Player 1")
         check_win()
         player_switch()
-        pew("Player 2")
+        shoot("Player 2")
         check_win()
         player_switch()
 
 
 def player_versus_enviroment():
+    "Ship placing and battle versus the AI"
     print("Place your ships!")
     table_init()
     set_place(a_array)
     ai_ship_placement()
     while True:
-        pew("Player 1")
+        shoot("Player 1")
         input("Press enter ")
         check_win()
         artificial_intelligence()
@@ -307,6 +331,8 @@ def player_versus_enviroment():
 
 
 def ai_ship_placement():
+    """The ai places its ships."""
+
     for q in range(2, 6):
         while True:
             x_coord = random.randint(0, 9)
@@ -328,6 +354,8 @@ def ai_ship_placement():
 
 
 def artificial_intelligence():
+    """The sequence about, the artificial intelligence performs shots."""
+
     while True:
         if ai_var == 2:
             bombardment()
@@ -341,6 +369,7 @@ def artificial_intelligence():
 
 
 def random_shooting():
+    """The AI takes a shoot to a random place."""
     global y_coord, x_coord, ai_var
     while True:
         x_coord = random.randint(0, 9)
@@ -361,6 +390,7 @@ def random_shooting():
 
 
 def pos_checker():
+    """If the random shot strikes, the AI is going to place shots around the previous location."""
     global y_coord, x_coord, ai_var, shoot_dir, y_pos_checker, x_pos_checker
     while True:
         if shoot_dir == 0:
@@ -369,7 +399,6 @@ def pos_checker():
                     a_array[y_coord - 1][x_coord] = 1
                     y_pos_checker, x_pos_checker = y_coord - 1, x_coord
                     ai_var = 2
-
                 else:
                     a_array[y_coord - 1][x_coord] = 2
                     shoot_dir = 1
@@ -382,7 +411,6 @@ def pos_checker():
                     a_array[y_coord][x_coord + 1] = 1
                     y_pos_checker, x_pos_checker = y_coord, x_coord + 1
                     ai_var = 2
-
                 else:
                     a_array[y_coord][x_coord + 1] = 2
                     shoot_dir = 2
@@ -395,7 +423,6 @@ def pos_checker():
                     a_array[y_coord + 1][x_coord] = 1
                     y_pos_checker, x_pos_checker = y_coord + 1, x_coord
                     ai_var = 2
-
                 else:
                     a_array[y_coord + 1][x_coord] = 2
                     shoot_dir = 3
@@ -408,7 +435,6 @@ def pos_checker():
                     a_array[y_coord][x_coord - 1] = 1
                     y_pos_checker, x_pos_checker = y_coord, x_coord - 1
                     ai_var = 2
-
                 else:
                     a_array[y_coord][x_coord - 1] = 2
                     shoot_dir = 0
@@ -423,7 +449,10 @@ def pos_checker():
 
 
 def bombardment():
-    global y_coord, x_coord, ai_var, shoot_dir, y_pos_checker, x_pos_checker, y_bombardment, x_bombardment
+    """If the pos_checker() finds the right direction, a bombardment session begins.
+       After the spree ends, the AI will try a shot with the opposite direction."""
+
+    global y_coord, x_coord, ai_var, shoot_dir, y_pos_checker, x_pos_checker
     if shoot_dir == 0:
         if place_check(y_pos_checker - 1, x_pos_checker, "none", 1, a_array):
             if a_array[y_pos_checker - 1][x_pos_checker] in [3, 4, 5, 6]:
@@ -475,26 +504,22 @@ def bombardment():
         else:
             ai_var = 1
             shoot_dir = 1
-    # nyomtat(a_array)
 
 
 def cheat():
-    global b_array
-    for i in range(0, 9):
-        for o in range(0, 9):
-            b_array[i][o] = 1
+    """Destroys all of the Player 2's, or AI's ship."""
 
-
-def cheat2():
     global b_submarine, b_battleship, b_mothership, b_cruiser
     b_submarine = 0
     b_battleship = 0
     b_mothership = 0
     b_cruiser = 0
+    print("Player 2's ships destroyed ")
 
 
 a_array = []
 b_array = []
+
 five_length_ship = [6, 6, 6, 6, 6]
 four_length_ship = [5, 5, 5, 5]
 three_length_ship = [4, 4, 4]
@@ -521,10 +546,6 @@ y_pos_checker = 0
 x_pos_checker = 0
 ai_var = 0
 shoot_dir = 0
-y_bombardment = 0
-x_bombardment = 0
-
-# ez itt a main
 
 
 def main():
@@ -541,40 +562,8 @@ def main():
             exit()
         else:
             continue
-
-main()
-"""" debug tools :D
-
-a_array = [[3, 4, 5, 6, 0, 0, 0, 0, 0, 0],
-          [3, 4, 5, 6, 0, 0, 0, 0, 0, 0],
-          [0, 4, 5, 6, 0, 0, 0, 0, 0, 0],
-          [0, 0, 5, 6, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 6, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
-
-b_array = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-          [0, 0, 0, 0, 0, 6, 6, 6, 6, 6],
-          [0, 0, 0, 0, 0, 0, 5, 5, 5, 5],
-          [0, 0, 0, 0, 0, 0, 0, 4, 4, 4],
-          [0, 0, 0, 0, 0, 0, 0, 0, 3, 3]]
-
-set_place(a_array)
-set_place(b_array)
-ai_ship_placement()
-
- player 1
-nyomtat(b_array)
-set_place(b_array)
-nyomtat(b_array)
-player_switch()
-pew()
-"""
+try:
+    main()
+except Exception as error:
+    print("Unfortunately, a problem occurred. The problem is:\n     ", error)
+    print("We are sorry about that. The program will now exit.")
