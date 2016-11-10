@@ -101,7 +101,7 @@ def ai_ship_placement():
             else:
                 continue
             break
-    nyomtat(aArray)
+    # nyomtat(aArray)
 
 move = 0
 
@@ -109,12 +109,19 @@ move = 0
 def artificial_intelligence():
     global move
     input("\ncsapassad\n")
-    if aiVar == 2:
-        bombardment()
-    elif aiVar == 1:
-        pos_checker()
-    elif aiVar == 0:
-        random_shooting()
+    while True:
+        if aiVar == 2:
+            bombardment()
+            nyomtat(aArray)
+            break
+        if aiVar == 1:
+            pos_checker()
+            nyomtat(aArray)
+            break
+        if aiVar == 0:
+            random_shooting()
+            nyomtat(aArray)
+            break
     move += 1
     print(move)
 
@@ -136,60 +143,69 @@ def random_shooting():
 
                 aiVar = 0
             break
-    nyomtat(aArray)
+    # nyomtat(aArray)
 
 
 def pos_checker():
     global yCoord, xCoord, aiVar, shootDir, yPoschecker, xPoschecker
-    if shootDir == 0:
-        if place_check(yCoord - 1, xCoord, "none", 1, aArray):
-            if aArray[yCoord - 1][xCoord] in [3, 4, 5, 6]:
-                aArray[yCoord - 1][xCoord] = 1
-                yPoschecker, xPoschecker = yCoord - 1, xCoord
-                aiVar = 2
+    while True:
+        if shootDir == 0:
+            if place_check(yCoord - 1, xCoord, "none", 1, aArray):
+                if aArray[yCoord - 1][xCoord] in [3, 4, 5, 6]:
+                    aArray[yCoord - 1][xCoord] = 1
+                    yPoschecker, xPoschecker = yCoord - 1, xCoord
+                    aiVar = 2
+
+                else:
+                    aArray[yCoord - 1][xCoord] = 2
+                    shootDir = 1
+                break
             else:
-                aArray[yCoord - 1][xCoord] = 2
                 shootDir = 1
-        else:
-            shootDir = 1
-    if shootDir == 1:
-        if place_check(yCoord, xCoord + 1, "none", 1, aArray):
-            if aArray[yCoord][xCoord + 1] in [3, 4, 5, 6]:
-                aArray[yCoord][xCoord + 1] = 1
-                yPoschecker, xPoschecker = yCoord, xCoord + 1
-                aiVar = 2
+        if shootDir == 1:
+            if place_check(yCoord, xCoord + 1, "none", 1, aArray):
+                if aArray[yCoord][xCoord + 1] in [3, 4, 5, 6]:
+                    aArray[yCoord][xCoord + 1] = 1
+                    yPoschecker, xPoschecker = yCoord, xCoord + 1
+                    aiVar = 2
+
+                else:
+                    aArray[yCoord][xCoord + 1] = 2
+                    shootDir = 2
+                break
             else:
-                aArray[yCoord][xCoord + 1] = 2
                 shootDir = 2
-        else:
-            shootDir = 2
-    if shootDir == 2:
-        if place_check(yCoord + 1, xCoord, "none", 1, aArray):
-            if aArray[yCoord + 1][xCoord] in [3, 4, 5, 6]:
-                aArray[yCoord + 1][xCoord] = 1
-                yPoschecker, xPoschecker = yCoord + 1, xCoord
-                aiVar = 2
+        if shootDir == 2:
+            if place_check(yCoord + 1, xCoord, "none", 1, aArray):
+                if aArray[yCoord + 1][xCoord] in [3, 4, 5, 6]:
+                    aArray[yCoord + 1][xCoord] = 1
+                    yPoschecker, xPoschecker = yCoord + 1, xCoord
+                    aiVar = 2
+
+                else:
+                    aArray[yCoord + 1][xCoord] = 2
+                    shootDir = 3
+                break
             else:
-                aArray[yCoord + 1][xCoord] = 2
                 shootDir = 3
-        else:
-            shootDir = 3
-    if shootDir == 3:
-        if place_check(yCoord, xCoord - 1, "none", 1, aArray):
-            if aArray[yCoord][xCoord - 1] in [3, 4, 5, 6]:
-                aArray[yCoord][xCoord - 1] = 1
-                yPoschecker, xPoschecker = yCoord, xCoord - 1
-                aiVar = 2
+        if shootDir == 3:
+            if place_check(yCoord, xCoord - 1, "none", 1, aArray):
+                if aArray[yCoord][xCoord - 1] in [3, 4, 5, 6]:
+                    aArray[yCoord][xCoord - 1] = 1
+                    yPoschecker, xPoschecker = yCoord, xCoord - 1
+                    aiVar = 2
+
+                else:
+                    aArray[yCoord][xCoord - 1] = 2
+                    shootDir = 0
+                    aiVar = 0
+                break
             else:
-                aArray[yCoord][xCoord - 1] = 2
                 shootDir = 0
                 aiVar = 0
-        else:
-            shootDir = 0
-            aiVar = 0
-    else:
-        aiVar = 0
-    nyomtat(aArray)
+                break
+        break
+    # nyomtat(aArray)
 
 
 def bombardment():
@@ -245,7 +261,7 @@ def bombardment():
         else:
             aiVar = 1
             shootDir = 1
-    nyomtat(aArray)
+    # nyomtat(aArray)
 
 
 yCoord = 0

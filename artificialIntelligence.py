@@ -125,7 +125,7 @@ def place_check(y, x, orientation, lenght, player):
         return True
 
 
-"""def pos_checker(coords):
+def pos_checker(coords):
     global randomShooting
     global shootDir
     yCoord = coords[0]
