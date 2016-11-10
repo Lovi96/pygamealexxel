@@ -294,7 +294,7 @@ def PVE():
     ai_ship_placement()
     while True:
         global randomShooting
-        pew(aArray)
+        pew("Player 1")
         randomShooting = 1
         check_win
         # to be continued
@@ -354,6 +354,7 @@ while True:
         PVP()
     elif gametype in ["e", "E", "pve", "PVE", "2"]:
         print("bocsesz, ez még készülőben van")
+        PVE()
     elif gametype == "exit":
         print("\nThe program will exit now. Bye!")
         exit()
