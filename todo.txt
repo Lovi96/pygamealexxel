@@ -1,3 +1,7 @@
 !!! y shootot lekezelni !!!! valueerror lehet :((
 
 154
+
+mothership = 6 6 6 6 feleslegessé vált elég lene 6
+
+ ↑↑↑↑↑↑↑ Your table ↑↑↑↑↑↑↑
