@@ -17,6 +17,24 @@ def table_init():
         new = []
 
 
+def ai_shooting():
+    global randomShooting
+    while randomShooting == 1:
+        xCoord = random.randint(0, 9)
+        yCoord = random.randint(0, 9)
+        if place_check(yCoord, xCoord, "none", 1, bArray):
+            if ((bArray[yCoord][xCoord] == 3) or (bArray[yCoord][xCoord] == 4) or
+                    (bArray[yCoord][xCoord] == 5) or (bArray[yCoord][xCoord] == 6)):
+                bArray[yCoord][xCoord] = 1
+                nyomtat(bArray)
+                randomShooting = 0
+
+            elif (bArray[yCoord][xCoord] == 0):
+                bArray[yCoord][xCoord] = 2
+                nyomtat(bArray)
+                randomShooting = 0
+
+
 def nyomtat(whichPlayer, printtype="yours"):
     for i in range(0, 10):
         if i == 9:
@@ -275,7 +293,9 @@ def PVE():
     set_place(aArray)
     ai_ship_placement()
     while True:
+        global randomShooting
         pew(aArray)
+        randomShooting = 1
         check_win
         # to be continued
 

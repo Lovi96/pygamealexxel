@@ -64,9 +64,9 @@ def textToInt():
             return csoda
 
 
-def bombardment(coords2):
+"""def bombardment(coords2):
     print(coords2)
-    global aArray
+    global bArray
     print(shootDir)
     global setBombardment
     global randomShooting
@@ -75,31 +75,31 @@ def bombardment(coords2):
     while randomShooting == 0 and setBombardment == 1:
         if (shootDir == 1):
             yCoord -= 1
-            nyomtat(aArray)
-            if (aArray[yCoord][xCoord] == 3):
-                aArray[yCoord][xCoord] = 1
+            nyomtat(bArray)
+            if (bArray[yCoord][xCoord] == 3):
+                bArray[yCoord][xCoord] = 1
                 break
 
         elif (shootDir == 2):
-            if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
-                    (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
-                aArray[yCoord][xCoord] = 1
+            if ((bArray[yCoord][xCoord] == 3) or (bArray[yCoord][xCoord] == 4) or
+                    (bArray[yCoord][xCoord] == 5) or (bArray[yCoord][xCoord] == 6)):
+                bArray[yCoord][xCoord] = 1
                 xCoord += 1
                 break
 
         elif (shootDir == 3):
-            if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
-                    (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
-                aArray[yCoord][xCoord] = 1
+            if ((bArray[yCoord][xCoord] == 3) or (bArray[yCoord][xCoord] == 4) or
+                    (bArray[yCoord][xCoord] == 5) or (bArray[yCoord][xCoord] == 6)):
+                bArray[yCoord][xCoord] = 1
                 yCoord -= 1
                 break
 
         elif (shootDir == 4):
-            if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
-                    (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
-                aArray[yCoord][xCoord] = 1
+            if ((bArray[yCoord][xCoord] == 3) or (bArray[yCoord][xCoord] == 4) or
+                    (bArray[yCoord][xCoord] == 5) or (bArray[yCoord][xCoord] == 6)):
+                bArray[yCoord][xCoord] = 1
                 xCoord -= 1
-                break
+                break"""
 
 
 def place_check(y, x, orientation, lenght, player):
@@ -125,7 +125,7 @@ def place_check(y, x, orientation, lenght, player):
         return True
 
 
-def pos_checker(coords):
+"""def pos_checker(coords):
     global randomShooting
     global shootDir
     yCoord = coords[0]
@@ -138,57 +138,57 @@ def pos_checker(coords):
     while randomShooting == 0 and setBombardment == 0:
         if (shootDir == 1):
             yCoord -= 1
-            if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
-                    (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
-                aArray[yCoord][xCoord] = 1
+            if ((bArray[yCoord][xCoord] == 3) or (bArray[yCoord][xCoord] == 4) or
+                    (bArray[yCoord][xCoord] == 5) or (bArray[yCoord][xCoord] == 6)):
+                bArray[yCoord][xCoord] = 1
                 setBombardment = 1
                 return yCoord, xCoord
 
-            elif (aArray[yCoord][xCoord] == 0):
-                aArray[yCoord][xCoord] = 2
+            elif (bArray[yCoord][xCoord] == 0):
+                bArray[yCoord][xCoord] = 2
                 shootDir += 1
                 return yCoord, xCoord
 
         elif (shootDir == 2):
             xCoord += 1
-            if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
-                    (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
-                aArray[yCoord][xCoord] = 1
+            if ((bArray[yCoord][xCoord] == 3) or (bArray[yCoord][xCoord] == 4) or
+                    (bArray[yCoord][xCoord] == 5) or (bArray[yCoord][xCoord] == 6)):
+                bArray[yCoord][xCoord] = 1
                 setBombardment = 1
                 return yCoord, xCoord
 
             else:
-                aArray[yCoord][xCoord] = 2
+                bArray[yCoord][xCoord] = 2
                 shootDir += 1
                 return yCoord, xCoord
 
         elif (shootDir == 3):
             yCoord += 1
-            if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
-                    (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
-                aArray[yCoord][xCoord] = 1
+            if ((bArray[yCoord][xCoord] == 3) or (bArray[yCoord][xCoord] == 4) or
+                    (bArray[yCoord][xCoord] == 5) or (bArray[yCoord][xCoord] == 6)):
+                bArray[yCoord][xCoord] = 1
                 setBombardment = 1
                 return yCoord, xCoord
 
             else:
-                aArray[yCoord][xCoord] = 2
+                bArray[yCoord][xCoord] = 2
                 shootDir += 1
                 return yCoord, xCoord
 
         elif (shootDir == 4):
             xCoord -= 1
-            if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
-                    (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
-                aArray[yCoord][xCoord] = 1
+            if ((bArray[yCoord][xCoord] == 3) or (bArray[yCoord][xCoord] == 4) or
+                    (bArray[yCoord][xCoord] == 5) or (bArray[yCoord][xCoord] == 6)):
+                bArray[yCoord][xCoord] = 1
                 setBombardment = 1
                 return yCoord, xCoord
-            elif (aArray[yCoord][xCoord] == 0):
-                aArray[yCoord][xCoord] = 2
+            elif (bArray[yCoord][xCoord] == 0):
+                bArray[yCoord][xCoord] = 2
                 return yCoord, xCoord
 
         shootDir = 1
         randomShooting = 1
-        break
+        break"""
 
 
 def ai_shooting():
@@ -196,16 +196,17 @@ def ai_shooting():
     while randomShooting == 1:
         xCoord = random.randint(0, 9)
         yCoord = random.randint(0, 9)
-        if place_check(yCoord, xCoord, "none", 1, aArray):
-            if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
-                    (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
-                aArray[yCoord][xCoord] = 1
-                nyomtat(aArray)
+        if place_check(yCoord, xCoord, "none", 1, bArray):
+            if ((bArray[yCoord][xCoord] == 3) or (bArray[yCoord][xCoord] == 4) or
+                    (bArray[yCoord][xCoord] == 5) or (bArray[yCoord][xCoord] == 6)):
+                bArray[yCoord][xCoord] = 1
+                nyomtat(bArray)
                 randomShooting = 0
-                return yCoord, xCoord
 
-            elif (aArray[yCoord][xCoord] == 0):
-                aArray[yCoord][xCoord] = 2
+            elif (bArray[yCoord][xCoord] == 0):
+                bArray[yCoord][xCoord] = 2
+                nyomtat(bArray)
+                randomShooting = 0
 
 
 def ai_ship_placement():
@@ -218,18 +219,18 @@ def ai_ship_placement():
                 verticalPlacement = "N"
             if verticalPlacement == 1:
                 verticalPlacement = "Y"
-            if place_check(yCoord, xCoord, verticalPlacement, q, aArray):
+            if place_check(yCoord, xCoord, verticalPlacement, q, bArray):
                 for index in range(q):
                     if verticalPlacement == "N":
-                        aArray[yCoord][index + xCoord] = ships[q - 2][index]
+                        bArray[yCoord][index + xCoord] = ships[q - 2][index]
                     if verticalPlacement == "Y":
-                        aArray[index + yCoord][xCoord] = ships[q - 2][index]
+                        bArray[index + yCoord][xCoord] = ships[q - 2][index]
             else:
                 continue
             break
-    nyomtat(aArray)
+    nyomtat(bArray)
 
-aArray = []
+bArray = []
 fivelengthship = [6, 6, 6, 6, 6]
 fourlengthship = [5, 5, 5, 5]
 threelengthship = [4, 4, 4]
@@ -244,16 +245,16 @@ new = []
 for i in range(0, 10):
     for j in range(0, 10):
         new.append(0)
-    aArray.append(new)
+    bArray.append(new)
     new = []
 randomShooting = 1
-# set_place(aArray)
+# set_place(bArray)
 ai_ship_placement()
+ai_shooting()
 """print(type(ai_shooting()))
 print(ai_shooting())
 pos_checker(ai_shooting())"""
-while True:
-    bombardment(pos_checker(ai_shooting()))
+
 # while True:
 
 #    ai_shooting()
