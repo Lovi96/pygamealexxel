@@ -8,34 +8,34 @@ def table_init():
     for i in range(0, 10):  # tömbök inicializálása
         for j in range(0, 10):
             new.append(0)
-        aArray.append(new)
+        a_array.append(new)
         new = []
     for i in range(0, 10):
         for j in range(0, 10):
             new.append(0)
-        bArray.append(new)
+        b_array.append(new)
         new = []
 
 
 def ai_shooting():
-    global randomShooting
-    while randomShooting == 1:
-        xCoord = random.randint(0, 9)
-        yCoord = random.randint(0, 9)
-        if place_check(yCoord, xCoord, "none", 1, bArray):
-            if ((bArray[yCoord][xCoord] == 3) or (bArray[yCoord][xCoord] == 4) or
-                    (bArray[yCoord][xCoord] == 5) or (bArray[yCoord][xCoord] == 6)):
-                bArray[yCoord][xCoord] = 1
-                nyomtat(bArray)
-                randomShooting = 0
+    global random_shooting
+    while random_shooting == 1:
+        x_coord = random.randint(0, 9)
+        y_coord = random.randint(0, 9)
+        if place_check(y_coord, x_coord, "none", 1, b_array):
+            if ((b_array[y_coord][x_coord] == 3) or (b_array[y_coord][x_coord] == 4) or
+                    (b_array[y_coord][x_coord] == 5) or (b_array[y_coord][x_coord] == 6)):
+                b_array[y_coord][x_coord] = 1
+                nyomtat(b_array)
+                random_shooting = 0
 
-            elif (bArray[yCoord][xCoord] == 0):
-                bArray[yCoord][xCoord] = 2
-                nyomtat(bArray)
-                randomShooting = 0
+            elif (b_array[y_coord][x_coord] == 0):
+                b_array[y_coord][x_coord] = 2
+                nyomtat(b_array)
+                random_shooting = 0
 
 
-def nyomtat(whichPlayer, printtype="yours"):
+def nyomtat(which_player, printtype="yours"):
     for i in range(0, 10):
         if i == 9:
             print(i + 1, " ", end="")
@@ -49,35 +49,35 @@ def nyomtat(whichPlayer, printtype="yours"):
                 print("\n")
                 print("1   ", end="")
             if printtype == "yours":
-                if whichPlayer[i][o] == 0:
+                if which_player[i][o] == 0:
                     print("[ ]", end="")
-                if whichPlayer[i][o] == 1:
+                if which_player[i][o] == 1:
                     print("[X]", end="")
-                if whichPlayer[i][o] == 2:
+                if which_player[i][o] == 2:
                     print("[O]", end="")
-                if whichPlayer[i][o] == 3:
+                if which_player[i][o] == 3:
                     print("[S]", end="")
-                if whichPlayer[i][o] == 4:
+                if which_player[i][o] == 4:
                     print("[C]", end="")
-                if whichPlayer[i][o] == 5:
+                if which_player[i][o] == 5:
                     print("[M]", end="")
-                if whichPlayer[i][o] == 6:
+                if which_player[i][o] == 6:
                     print("[B]", end="")
                 if o == 9:
                     print("\n")
 
             if printtype == "enemy":
-                if whichPlayer[i][o] in [0, 3, 4, 5, 6]:
+                if which_player[i][o] in [0, 3, 4, 5, 6]:
                     print("[ ]", end="")
-                if whichPlayer[i][o] == 1:
+                if which_player[i][o] == 1:
                     print("[X]", end="")
-                if whichPlayer[i][o] == 2:
+                if which_player[i][o] == 2:
                     print("[O]", end="")
                 if o == 9:
                     print("\n")
 
 
-def textToInt():
+def text_to_int():
     while True:
         input_char = input("Give the X coordinate! (A-J) ")
         if input_char == "cheat":
@@ -96,7 +96,7 @@ def textToInt():
             continue
 
 
-def validInt():
+def valid_int():
     while True:
         inputint = input("Please add the Y coodrinate! (1-10) ")
         if inputint == "exit":
@@ -119,13 +119,13 @@ def validInt():
 
 def orientation():
     while True:
-        inputOrientation = input("Do you want it vertically? (Y/N) ")
-        if inputOrientation == "exit":
+        input_orientation = input("Do you want it vertically? (Y/N) ")
+        if input_orientation == "exit":
             print("\nThe program will exit now. Bye!")
             exit()
-        if inputOrientation in ["y", "Y", "n", "N"]:
-            inputOrientation = inputOrientation.capitalize()
-            return inputOrientation
+        if input_orientation in ["y", "Y", "n", "N"]:
+            input_orientation = input_orientation.capitalize()
+            return input_orientation
         else:
             print("\nWrong answer!\n")
             continue
@@ -133,12 +133,12 @@ def orientation():
 
 def set_place(player):
     nyomtat(player)
-    shipNames = ["Submarine", "Cruiser", "Mothership", "Battleship"]
+    ship_names = ["Submarine", "Cruiser", "Mothership", "Battleship"]
     for q in range(2, 6):  # A jatekos hajoi
         while True:
-            print("Give the positions of the {}!  ".format(shipNames[q - 2]))
-            positionx = textToInt()
-            positiony = validInt() - 1
+            print("Give the positions of the {}!  ".format(ship_names[q - 2]))
+            positionx = text_to_int()
+            positiony = valid_int() - 1
             answer = orientation()
             if place_check(positiony, positionx, answer, q, player):
                 for index in range(q):
@@ -179,28 +179,29 @@ def place_check(y, x, orientation, lenght, player):
 
 def pew(player):
     array = []
-    self_Array = []
-    global aSubmarine, bSubmarine, aCruiser, bCruiser, aMothership, bMothership, aBattleship, bBattleship
-    global paSubmarine, pbSubmarine, paCruiser, pbCruiser, paMothership, pbMothership, paBattleship, pbBattleship
-    global aArray, bArray
-    Submarine, Cruiser, Mothership, Battleship, pSubmarine, pCruiser, pMothership, pBattleship = 0, 0, 0, 0, 0, 0, 0, 0
+    self_array = []
+    global a_submarine, b_submarine, a_cruiser, b_cruiser, a_mothership, b_mothership, a_battleship, b_battleship
+    global pa_submarine, pb_submarine, pa_cruiser, pb_cruiser, pa_mothership, pb_mothership, pa_battleship
+    global pb_battleship, a_array, b_array
+    submarine, cruiser, mothership, battleship, p_submarine, p_cruiser, p_mothership = 0, 0, 0, 0, 0, 0, 0
+    p_battleship = 0
     if player == "Player 2":
-        array = aArray
-        self_Array = bArray
-        Submarine, Cruiser, Mothership, Battleship = aSubmarine, aCruiser, aMothership, aBattleship
-        pSubmarine, pCruiser, pMothership, pBattleship = paSubmarine, paCruiser, paMothership, paBattleship
+        array = a_array
+        self_array = b_array
+        submarine, cruiser, mothership, battleship = a_submarine, a_cruiser, a_mothership, a_battleship
+        p_submarine, p_cruiser, p_mothership, p_battleship = pa_submarine, pa_cruiser, pa_mothership, pa_battleship
     if player == "Player 1":
-        array = bArray
-        self_Array = aArray
-        Submarine, Cruiser, Mothership, Battleship = bSubmarine, bCruiser, bMothership, bBattleship
-        Submarine, Cruiser, Mothership, Battleship = pbSubmarine, pbCruiser, pbMothership, pbBattleship
-    nyomtat(self_Array)
+        array = b_array
+        self_array = a_array
+        submarine, cruiser, mothership, battleship = b_submarine, b_cruiser, b_mothership, b_battleship
+        submarine, cruiser, mothership, battleship = pb_submarine, pb_cruiser, pb_mothership, pb_battleship
+    nyomtat(self_array)
     print("      ↑↑↑↑↑↑↑ Your table ↑↑↑↑↑↑↑\n      ↓↓↓↓↓↓↓ Enemy table↓↓↓↓↓↓↓")
     nyomtat(array, "enemy")
     while True:
         print("This is your turn, ", player, ". Take your shoot! ")
-        positionx = textToInt()
-        positiony = validInt() - 1
+        positionx = text_to_int()
+        positiony = valid_int() - 1
         if place_check(positiony, positionx, "none", 1, array):
             if array[positiony][positionx] == 0:
                 array[positiony][positionx] = 2
@@ -210,45 +211,46 @@ def pew(player):
             if array[positiony][positionx] == 3:
                 array[positiony][positionx] = 1
                 nyomtat(array, "enemy")
-                Submarine -= 1
-                if (Submarine < pSubmarine) and (Submarine == 0):
+                submarine -= 1
+                if (submarine < p_submarine) and (submarine == 0):
                     print(player, "'s Submarine sank. ")
-                pSubmarine = Submarine
+                p_submarine = submarine
                 print("BÄMM")
 
             elif array[positiony][positionx] == 4:
                 array[positiony][positionx] = 1
                 nyomtat(array, "enemy")
-                Cruiser -= 1
-                if (Cruiser < pCruiser) and (Cruiser == 0):
+                cruiser -= 1
+                if (cruiser < p_cruiser) and (cruiser == 0):
                     print(player, "'s Cruiser sank. ")
-                pCruiser = Cruiser
+                p_cruiser = cruiser
                 print("BÄMM")
 
             elif array[positiony][positionx] == 5:
                 array[positiony][positionx] = 1
                 nyomtat(array, "enemy")
-                Mothership -= 1
-                if (Mothership < pMothership) and (Mothership == 0):
+                mothership -= 1
+                if (mothership < p_mothership) and (mothership == 0):
                     print(player, "'s Mothership sank. ")
-                pMothership = Mothership
+                p_mothership = mothership
                 print("BÄMM")
 
             elif array[positiony][positionx] == 6:
                 array[positiony][positionx] = 1
                 nyomtat(array, "enemy")
-                Battleship -= 1
-                if (Battleship < pBattleship) and (Battleship == 0):
+                battleship -= 1
+                if (battleship < p_battleship) and (battleship == 0):
                     print(player, "'s Battleship sank. ")
-                pBattleship = Battleship
+                p_battleship = battleship
                 print("BÄMM")
 
             if player == "Player 2":
-                aSubmarine, aCruiser, aMothership, aBattleship = Submarine, Cruiser, Mothership, Battleship
-                paSubmarine, paCruiser, paMothership, paBattleship = pSubmarine, pCruiser, pMothership, pBattleship
+                a_submarine, a_cruiser, a_mothership, a_battleship = submarine, cruiser, mothership, battleship
+                pa_submarine, pa_cruiser, pa_mothership = p_submarine, p_cruiser, p_mothership
+                pa_battleship = p_battleship
             if player == "Player 1":
-                bSubmarine, bCruiser, bMothership, bBattleship = Submarine, Cruiser, Mothership, Battleship
-                pbSubmarine, pbCruiser, pbMothership, pbBattleship = Submarine, Cruiser, Mothership, Battleship
+                b_submarine, b_cruiser, b_mothership, b_battleship = submarine, cruiser, mothership, battleship
+                pb_submarine, pb_cruiser, pb_mothership, pb_battleship = submarine, cruiser, mothership, battleship
 
             break
         else:
@@ -256,7 +258,7 @@ def pew(player):
             continue
 
 
-def playerSwitch():
+def player_switch():
     input("Press enter if you done ")
     os.system('cls' if os.name == 'nt' else 'clear')
     print("Switching players!")
@@ -267,34 +269,34 @@ def playerSwitch():
 
 
 def check_win():
-    if (aSubmarine == 0) and (aBattleship == 0) and (aMothership == 0) and (aCruiser == 0):
+    if (a_submarine == 0) and (a_battleship == 0) and (a_mothership == 0) and (a_cruiser == 0):
         print("\n\nPLAYER 2 WINS!!!" * 3)
         exit()
-    if (bSubmarine == 0) and (bBattleship == 0) and (bMothership == 0) and (bCruiser == 0):
+    if (b_submarine == 0) and (b_battleship == 0) and (b_mothership == 0) and (b_cruiser == 0):
         print("\n\nPLAYER 1 WINS!!!" * 3)
         exit()
 
 
-def PVP():
+def player_versus_player():
     input("\nNow, you will place the ships. Player 1 starts first.\nPress enter to continue\n")
     table_init()
-    set_place(aArray)
-    playerSwitch()
+    set_place(a_array)
+    player_switch()
     input("\nNow player 2 place their ships.\n")
-    set_place(bArray)
+    set_place(b_array)
     while True:
         pew("Player 1")
         check_win()
-        playerSwitch()
+        player_switch()
         pew("Player 2")
         check_win()
-        playerSwitch()
+        player_switch()
 
 
-def PVE():
+def player_versus_enviroment():
     print("Place your ships!")
     table_init()
-    set_place(aArray)
+    set_place(a_array)
     ai_ship_placement()
     while True:
         pew("Player 1")
@@ -307,19 +309,19 @@ def PVE():
 def ai_ship_placement():
     for q in range(2, 6):
         while True:
-            xCoord = random.randint(0, 9)
-            yCoord = random.randint(0, 9)
-            verticalPlacement = random.randint(0, 1)
-            if verticalPlacement == 0:
-                verticalPlacement = "N"
-            if verticalPlacement == 1:
-                verticalPlacement = "Y"
-            if place_check(yCoord, xCoord, verticalPlacement, q, bArray):
+            x_coord = random.randint(0, 9)
+            y_coord = random.randint(0, 9)
+            vertical_placement = random.randint(0, 1)
+            if vertical_placement == 0:
+                vertical_placement = "N"
+            if vertical_placement == 1:
+                vertical_placement = "Y"
+            if place_check(y_coord, x_coord, vertical_placement, q, b_array):
                 for index in range(q):
-                    if verticalPlacement == "N":
-                        bArray[yCoord][index + xCoord] = ships[q - 2][index]
-                    if verticalPlacement == "Y":
-                        bArray[index + yCoord][xCoord] = ships[q - 2][index]
+                    if vertical_placement == "N":
+                        b_array[y_coord][index + x_coord] = ships[q - 2][index]
+                    if vertical_placement == "Y":
+                        b_array[index + y_coord][x_coord] = ships[q - 2][index]
             else:
                 continue
             break
@@ -327,214 +329,213 @@ def ai_ship_placement():
 
 def artificial_intelligence():
     while True:
-        if aiVar == 2:
+        if ai_var == 2:
             bombardment()
             break
-        if aiVar == 1:
+        if ai_var == 1:
             pos_checker()
             break
-        if aiVar == 0:
+        if ai_var == 0:
             random_shooting()
             break
 
 
 def random_shooting():
-    global yCoord, xCoord, aiVar
+    global y_coord, x_coord, ai_var
     while True:
-        xCoord = random.randint(0, 9)
-        yCoord = random.randint(0, 9)
-        if place_check(yCoord, xCoord, "none", 1, aArray):
-            if ((aArray[yCoord][xCoord] == 3) or (aArray[yCoord][xCoord] == 4) or
-                    (aArray[yCoord][xCoord] == 5) or (aArray[yCoord][xCoord] == 6)):
-                aArray[yCoord][xCoord] = 1
+        x_coord = random.randint(0, 9)
+        y_coord = random.randint(0, 9)
+        if place_check(y_coord, x_coord, "none", 1, a_array):
+            if ((a_array[y_coord][x_coord] == 3) or (a_array[y_coord][x_coord] == 4) or
+                    (a_array[y_coord][x_coord] == 5) or (a_array[y_coord][x_coord] == 6)):
+                a_array[y_coord][x_coord] = 1
 
-                aiVar = 1
+                ai_var = 1
 
-            elif (aArray[yCoord][xCoord] == 0):
-                aArray[yCoord][xCoord] = 2
+            elif (a_array[y_coord][x_coord] == 0):
+                a_array[y_coord][x_coord] = 2
 
-                aiVar = 0
+                ai_var = 0
             break
-    # nyomtat(aArray)
+    # nyomtat(a_array)
 
 
 def pos_checker():
-    global yCoord, xCoord, aiVar, shootDir, yPoschecker, xPoschecker
+    global y_coord, x_coord, ai_var, shoot_dir, y_pos_checker, x_pos_checker
     while True:
-        if shootDir == 0:
-            if place_check(yCoord - 1, xCoord, "none", 1, aArray):
-                if aArray[yCoord - 1][xCoord] in [3, 4, 5, 6]:
-                    aArray[yCoord - 1][xCoord] = 1
-                    yPoschecker, xPoschecker = yCoord - 1, xCoord
-                    aiVar = 2
+        if shoot_dir == 0:
+            if place_check(y_coord - 1, x_coord, "none", 1, a_array):
+                if a_array[y_coord - 1][x_coord] in [3, 4, 5, 6]:
+                    a_array[y_coord - 1][x_coord] = 1
+                    y_pos_checker, x_pos_checker = y_coord - 1, x_coord
+                    ai_var = 2
 
                 else:
-                    aArray[yCoord - 1][xCoord] = 2
-                    shootDir = 1
+                    a_array[y_coord - 1][x_coord] = 2
+                    shoot_dir = 1
                 break
             else:
-                shootDir = 1
-        if shootDir == 1:
-            if place_check(yCoord, xCoord + 1, "none", 1, aArray):
-                if aArray[yCoord][xCoord + 1] in [3, 4, 5, 6]:
-                    aArray[yCoord][xCoord + 1] = 1
-                    yPoschecker, xPoschecker = yCoord, xCoord + 1
-                    aiVar = 2
+                shoot_dir = 1
+        if shoot_dir == 1:
+            if place_check(y_coord, x_coord + 1, "none", 1, a_array):
+                if a_array[y_coord][x_coord + 1] in [3, 4, 5, 6]:
+                    a_array[y_coord][x_coord + 1] = 1
+                    y_pos_checker, x_pos_checker = y_coord, x_coord + 1
+                    ai_var = 2
 
                 else:
-                    aArray[yCoord][xCoord + 1] = 2
-                    shootDir = 2
+                    a_array[y_coord][x_coord + 1] = 2
+                    shoot_dir = 2
                 break
             else:
-                shootDir = 2
-        if shootDir == 2:
-            if place_check(yCoord + 1, xCoord, "none", 1, aArray):
-                if aArray[yCoord + 1][xCoord] in [3, 4, 5, 6]:
-                    aArray[yCoord + 1][xCoord] = 1
-                    yPoschecker, xPoschecker = yCoord + 1, xCoord
-                    aiVar = 2
+                shoot_dir = 2
+        if shoot_dir == 2:
+            if place_check(y_coord + 1, x_coord, "none", 1, a_array):
+                if a_array[y_coord + 1][x_coord] in [3, 4, 5, 6]:
+                    a_array[y_coord + 1][x_coord] = 1
+                    y_pos_checker, x_pos_checker = y_coord + 1, x_coord
+                    ai_var = 2
 
                 else:
-                    aArray[yCoord + 1][xCoord] = 2
-                    shootDir = 3
+                    a_array[y_coord + 1][x_coord] = 2
+                    shoot_dir = 3
                 break
             else:
-                shootDir = 3
-        if shootDir == 3:
-            if place_check(yCoord, xCoord - 1, "none", 1, aArray):
-                if aArray[yCoord][xCoord - 1] in [3, 4, 5, 6]:
-                    aArray[yCoord][xCoord - 1] = 1
-                    yPoschecker, xPoschecker = yCoord, xCoord - 1
-                    aiVar = 2
+                shoot_dir = 3
+        if shoot_dir == 3:
+            if place_check(y_coord, x_coord - 1, "none", 1, a_array):
+                if a_array[y_coord][x_coord - 1] in [3, 4, 5, 6]:
+                    a_array[y_coord][x_coord - 1] = 1
+                    y_pos_checker, x_pos_checker = y_coord, x_coord - 1
+                    ai_var = 2
 
                 else:
-                    aArray[yCoord][xCoord - 1] = 2
-                    shootDir = 0
-                    aiVar = 0
+                    a_array[y_coord][x_coord - 1] = 2
+                    shoot_dir = 0
+                    ai_var = 0
                 break
             else:
-                shootDir = 0
-                aiVar = 0
+                shoot_dir = 0
+                ai_var = 0
                 break
         break
-    # nyomtat(aArray)
+    # nyomtat(a_array)
 
 
 def bombardment():
-    global yCoord, xCoord, aiVar, shootDir, yPoschecker, xPoschecker, yBombardment, xBombardment
-    if shootDir == 0:
-        if place_check(yPoschecker - 1, xPoschecker, "none", 1, aArray):
-            if aArray[yPoschecker - 1][xPoschecker] in [3, 4, 5, 6]:
-                aArray[yPoschecker - 1][xPoschecker] = 1
-                yPoschecker, xPoschecker = yPoschecker - 1, xPoschecker
+    global y_coord, x_coord, ai_var, shoot_dir, y_pos_checker, x_pos_checker, y_bombardment, x_bombardment
+    if shoot_dir == 0:
+        if place_check(y_pos_checker - 1, x_pos_checker, "none", 1, a_array):
+            if a_array[y_pos_checker - 1][x_pos_checker] in [3, 4, 5, 6]:
+                a_array[y_pos_checker - 1][x_pos_checker] = 1
+                y_pos_checker, x_pos_checker = y_pos_checker - 1, x_pos_checker
             else:
-                aArray[yPoschecker - 1][xPoschecker] = 2
-                aiVar = 1
-                shootDir = 2
+                a_array[y_pos_checker - 1][x_pos_checker] = 2
+                ai_var = 1
+                shoot_dir = 2
         else:
-            aiVar = 1
-            shootDir = 2
+            ai_var = 1
+            shoot_dir = 2
 
-    elif shootDir == 1:
-        if place_check(yPoschecker, xPoschecker + 1, "none", 1, aArray):
-            if aArray[yPoschecker][xPoschecker + 1] in [3, 4, 5, 6]:
-                aArray[yPoschecker][xPoschecker + 1] = 1
-                yPoschecker, xPoschecker = yPoschecker, xPoschecker + 1
+    elif shoot_dir == 1:
+        if place_check(y_pos_checker, x_pos_checker + 1, "none", 1, a_array):
+            if a_array[y_pos_checker][x_pos_checker + 1] in [3, 4, 5, 6]:
+                a_array[y_pos_checker][x_pos_checker + 1] = 1
+                y_pos_checker, x_pos_checker = y_pos_checker, x_pos_checker + 1
             else:
-                aArray[yPoschecker][xPoschecker + 1] = 2
-                aiVar = 1
-                shootDir = 3
+                a_array[y_pos_checker][x_pos_checker + 1] = 2
+                ai_var = 1
+                shoot_dir = 3
         else:
-            aiVar = 1
-            shootDir = 3
+            ai_var = 1
+            shoot_dir = 3
 
-    elif shootDir == 2:
-        if place_check(yPoschecker + 1, xPoschecker, "none", 1, aArray):
-            if aArray[yPoschecker + 1][xPoschecker] in [3, 4, 5, 6]:
-                aArray[yPoschecker + 1][xPoschecker] = 1
-                yPoschecker, xPoschecker = yPoschecker + 1, xPoschecker
+    elif shoot_dir == 2:
+        if place_check(y_pos_checker + 1, x_pos_checker, "none", 1, a_array):
+            if a_array[y_pos_checker + 1][x_pos_checker] in [3, 4, 5, 6]:
+                a_array[y_pos_checker + 1][x_pos_checker] = 1
+                y_pos_checker, x_pos_checker = y_pos_checker + 1, x_pos_checker
             else:
-                aArray[yPoschecker + 1][xPoschecker] = 2
-                aiVar = 1
-                shootDir = 0
+                a_array[y_pos_checker + 1][x_pos_checker] = 2
+                ai_var = 1
+                shoot_dir = 0
         else:
-            aiVar = 1
-            shootDir = 0
+            ai_var = 1
+            shoot_dir = 0
 
-    elif shootDir == 3:
-        if place_check(yPoschecker, xPoschecker - 1, "none", 1, aArray):
-            if aArray[yPoschecker][xPoschecker - 1] in [3, 4, 5, 6]:
-                aArray[yPoschecker][xPoschecker - 1] = 1
-                yPoschecker, xPoschecker = yPoschecker, xPoschecker - 1
+    elif shoot_dir == 3:
+        if place_check(y_pos_checker, x_pos_checker - 1, "none", 1, a_array):
+            if a_array[y_pos_checker][x_pos_checker - 1] in [3, 4, 5, 6]:
+                a_array[y_pos_checker][x_pos_checker - 1] = 1
+                y_pos_checker, x_pos_checker = y_pos_checker, x_pos_checker - 1
             else:
-                aArray[yPoschecker][xPoschecker - 1] = 2
-                aiVar = 1
-                shootDir = 1
+                a_array[y_pos_checker][x_pos_checker - 1] = 2
+                ai_var = 1
+                shoot_dir = 1
         else:
-            aiVar = 1
-            shootDir = 1
-    # nyomtat(aArray)
+            ai_var = 1
+            shoot_dir = 1
+    # nyomtat(a_array)
 
 
 def cheat():
-    global bArray
+    global b_array
     for i in range(0, 9):
         for o in range(0, 9):
-            bArray[i][o] = 1
+            b_array[i][o] = 1
 
 
 def cheat2():
-    global bSubmarine, bBattleship, bMothership, bCruiser
-    bSubmarine = 0
-    bBattleship = 0
-    bMothership = 0
-    bCruiser = 0
+    global b_submarine, b_battleship, b_mothership, b_cruiser
+    b_submarine = 0
+    b_battleship = 0
+    b_mothership = 0
+    b_cruiser = 0
 
 
-aArray = []
-bArray = []
-fivelengthship = [6, 6, 6, 6, 6]
-fourlengthship = [5, 5, 5, 5]
-threelengthship = [4, 4, 4]
-twolengthship = [3, 3]
+a_array = []
+b_array = []
+five_length_ship = [6, 6, 6, 6, 6]
+four_length_ship = [5, 5, 5, 5]
+three_length_ship = [4, 4, 4]
+two_length_ship = [3, 3]
 
-aSubmarine, bSubmarine = 2, 2
-aCruiser, bCruiser = 3, 3
-aMothership, bMothership = 4, 4
-aBattleship, bBattleship = 5, 5
+a_submarine, b_submarine = 2, 2
+a_cruiser, b_cruiser = 3, 3
+a_mothership, b_mothership = 4, 4
+a_battleship, b_battleship = 5, 5
 
-paSubmarine, pbSubmarine = 2, 2
-paCruiser, pbCruiser = 3, 3
-paMothership, pbMothership = 4, 4
-paBattleship, pbBattleship = 5, 5
+pa_submarine, pb_submarine = 2, 2
+pa_cruiser, pb_cruiser = 3, 3
+pa_mothership, pb_mothership = 4, 4
+pa_battleship, pb_battleship = 5, 5
 
 
-ships = [twolengthship, threelengthship, fourlengthship, fivelengthship]
-shipNames = ["Submarine", "Cruiser", "Mothership", "Battleship"]
+ships = [two_length_ship, three_length_ship, four_length_ship, five_length_ship]
+ship_names = ["Submarine", "Cruiser", "Mothership", "Battleship"]
 abc = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
 
-yCoord = 0
-xCoord = 0
-yPoschecker = 0
-xPoschecker = 0
-aiVar = 0
-shootDir = 0
-yBombardment = 0
-xBombardment = 0
+y_coord = 0
+x_coord = 0
+y_pos_checker = 0
+x_pos_checker = 0
+ai_var = 0
+shoot_dir = 0
+y_bombardment = 0
+x_bombardment = 0
 
 # ez itt a main
 
 
 def main():
-    print("Welcome to our game!\n\nYou can choose between two game type:\nPress P for the PVP (play against real player) or")
-    print('Press E for the PVE (play against the computer)\n\nRemember, you can always quit, if you type "exit"\nHave fun :)')
+    print("Welcome to our game!\n\nYou can choose between two game modes:\nPress P for PVP or ")
+    print('Press E for PVE (play against A.I.)\n\nRemember, you can always quit, if you type "exit"\nHave fun :)')
     while True:
         gametype = input()
         if gametype in ["p", "P", "pvp", "PVP", "1"]:
-            PVP()
+            player_versus_player()
         elif gametype in ["e", "E", "pve", "PVE", "2"]:
-            print("bocsesz, ez még készülőben van")
-            PVE()
+            player_versus_enviroment()
         elif gametype == "exit":
             print("\nThe program will exit now. Bye!")
             exit()
@@ -544,7 +545,7 @@ def main():
 main()
 """" debug tools :D
 
-aArray = [[3, 4, 5, 6, 0, 0, 0, 0, 0, 0],
+a_array = [[3, 4, 5, 6, 0, 0, 0, 0, 0, 0],
           [3, 4, 5, 6, 0, 0, 0, 0, 0, 0],
           [0, 4, 5, 6, 0, 0, 0, 0, 0, 0],
           [0, 0, 5, 6, 0, 0, 0, 0, 0, 0],
@@ -555,7 +556,7 @@ aArray = [[3, 4, 5, 6, 0, 0, 0, 0, 0, 0],
           [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
           [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
-bArray = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+b_array = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
           [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
           [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
           [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -566,14 +567,14 @@ bArray = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
           [0, 0, 0, 0, 0, 0, 0, 4, 4, 4],
           [0, 0, 0, 0, 0, 0, 0, 0, 3, 3]]
 
-set_place(aArray)
-set_place(bArray)
+set_place(a_array)
+set_place(b_array)
 ai_ship_placement()
 
  player 1
-nyomtat(bArray)
-set_place(bArray)
-nyomtat(bArray)
-playerSwitch()
+nyomtat(b_array)
+set_place(b_array)
+nyomtat(b_array)
+player_switch()
 pew()
 """
