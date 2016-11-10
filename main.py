@@ -212,8 +212,7 @@ def shoot(player):
         submarine, cruiser, mothership, battleship = b_submarine, b_cruiser, b_mothership, b_battleship
         p_submarine, p_cruiser, p_mothership, p_battleship = pb_submarine, pb_cruiser, pb_mothership, pb_battleship
     nyomtat(self_array)
-    #print("      ↑↑↑↑↑↑↑ Your table ↑↑↑↑↑↑↑\n      ↓↓↓↓↓↓↓ Enemy table↓↓↓↓↓↓↓")
-    print("fent tiedé, lent enemy")
+    print("      ↑↑↑↑↑↑↑ Your table ↑↑↑↑↑↑↑\n      ↓↓↓↓↓↓↓ Enemy table↓↓↓↓↓↓↓")
     nyomtat(array, "enemy")
     while True:
         print("This is your turn, ", player, ". Take your shoot! ")
