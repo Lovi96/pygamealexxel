@@ -5,7 +5,7 @@ import random
 
 def table_init():
     """Initializes the tables."""
-    
+
     new = []
     for i in range(0, 10):
         for j in range(0, 10):
@@ -30,16 +30,16 @@ def ai_shooting():
             if ((b_array[y_coord][x_coord] == 3) or (b_array[y_coord][x_coord] == 4) or
                     (b_array[y_coord][x_coord] == 5) or (b_array[y_coord][x_coord] == 6)):
                 b_array[y_coord][x_coord] = 1
-                nyomtat(b_array)
+                print_for_player(b_array)
                 random_shooting = 0
 
             elif (b_array[y_coord][x_coord] == 0):
                 b_array[y_coord][x_coord] = 2
-                nyomtat(b_array)
+                print_for_player(b_array)
                 random_shooting = 0
 
 
-def nyomtat(which_player, printtype="yours"):
+def print_for_player(which_player, printtype="yours"):
     """Prints the talbe with nice format.
     If the printtype is "enemy", it prints only the hit or miss mark.
     If the printtype is on the default value, it prints the untouched ships too."""
@@ -90,11 +90,12 @@ def text_to_int():
 
     while True:
         input_char = input("Give the X coordinate! (A-J) ")
-        if input_char == "cheat":
-            cheat()
         if input_char == "exit":
             print("\nThe program will exit now. Bye!")
             exit()
+        if input_char == "cheat":
+            cheat()
+            return input_char
         input_char = input_char.capitalize()
         for s in range(0, 10):
             if abc[s] == input_char:
@@ -107,9 +108,9 @@ def text_to_int():
 
 def valid_int():
     """Checks the given number."""
-    
+
     while True:
-        inputint = input("Please add the Y coodrinate! (1-10) ")
+        inputint = input("Please add the Y coordinate! (1-10) ")
         if inputint == "exit":
             print("\nThe program will exit now. Bye!")
             exit()
@@ -146,26 +147,39 @@ def orientation():
 def set_place(player):
     """Places the ships."""
 
-    nyomtat(player)
-    ship_names = ["Submarine", "Cruiser", "Mothership", "Battleship"]
-    for q in range(2, 6):  # A jatekos hajoi
-        while True:
-            print("Give the positions of the {}!  ".format(ship_names[q - 2]))
-            positionx = text_to_int()
-            positiony = valid_int() - 1
-            answer = orientation()
-            if place_check(positiony, positionx, answer, q, player):
-                for index in range(q):
-                    if answer == "N":
-                        player[positiony][
-                            index + positionx] = ships[q - 2][index]
-                    if answer == "Y":
-                        player[index + positiony][positionx] = ships[q - 2][index]
-                break
-            else:
-                print("\nInvalid position!!\n")
-                continue
-        nyomtat(player)
+    global a_array, b_array
+    manual_set = input("Press enter to set the ships ")
+
+    if manual_set == "test1":
+        player = test_array1
+        print("test_array1 maybe loaded")
+    elif manual_set == "test2":
+        player = test_array2
+        print("test_array2 maybe loaded")
+
+    else:
+        print_for_player(player)
+        ship_names = ["Submarine", "Cruiser", "Mothership", "Battleship"]
+        for q in range(2, 6):  # A jatekos hajoi
+            while True:
+                print("Give the positions of the {}!  ".format(
+                    ship_names[q - 2]))
+                positionx = text_to_int()
+                positiony = valid_int() - 1
+                answer = orientation()
+                if place_check(positiony, positionx, answer, q, player):
+                    for index in range(q):
+                        if answer == "N":
+                            player[positiony][
+                                index + positionx] = ships[q - 2][index]
+                        if answer == "Y":
+                            player[
+                                index + positiony][positionx] = ships[q - 2][index]
+                    break
+                else:
+                    print("\nInvalid position!!\n")
+                    continue
+            print_for_player(player)
 
 
 def place_check(y, x, orientation, lenght, player):
@@ -211,22 +225,24 @@ def shoot(player):
         self_array = a_array
         submarine, cruiser, mothership, battleship = b_submarine, b_cruiser, b_mothership, b_battleship
         p_submarine, p_cruiser, p_mothership, p_battleship = pb_submarine, pb_cruiser, pb_mothership, pb_battleship
-    nyomtat(self_array)
+    print_for_player(self_array)
     print("      ↑↑↑↑↑↑↑ Your table ↑↑↑↑↑↑↑\n      ↓↓↓↓↓↓↓ Enemy table↓↓↓↓↓↓↓")
-    nyomtat(array, "enemy")
+    print_for_player(array, "enemy")
     while True:
-        print("This is your turn, ", player, ". Take your shoot! ")
+        print("This is your turn, ", player, ". take your shot! ")
         positionx = text_to_int()
+        if positionx == "cheat":
+            break
         positiony = valid_int() - 1
         if place_check(positiony, positionx, "none", 1, array):
             if array[positiony][positionx] == 0:
                 array[positiony][positionx] = 2
-                nyomtat(array, "enemy")
+                print_for_player(array, "enemy")
                 print("MISS")
 
             if array[positiony][positionx] == 3:
                 array[positiony][positionx] = 1
-                nyomtat(array, "enemy")
+                print_for_player(array, "enemy")
                 submarine -= 1
                 if (submarine < p_submarine) and (submarine == 0):
                     print(player, "'s Submarine sank. ")
@@ -235,7 +251,7 @@ def shoot(player):
 
             elif array[positiony][positionx] == 4:
                 array[positiony][positionx] = 1
-                nyomtat(array, "enemy")
+                print_for_player(array, "enemy")
                 cruiser -= 1
                 if (cruiser < p_cruiser) and (cruiser == 0):
                     print(player, "'s Cruiser sank. ")
@@ -244,7 +260,7 @@ def shoot(player):
 
             elif array[positiony][positionx] == 5:
                 array[positiony][positionx] = 1
-                nyomtat(array, "enemy")
+                print_for_player(array, "enemy")
                 mothership -= 1
                 if (mothership < p_mothership) and (mothership == 0):
                     print(player, "'s Mothership sank. ")
@@ -253,7 +269,7 @@ def shoot(player):
 
             elif array[positiony][positionx] == 6:
                 array[positiony][positionx] = 1
-                nyomtat(array, "enemy")
+                print_for_player(array, "enemy")
                 battleship -= 1
                 if (battleship < p_battleship) and (battleship == 0):
                     print(player, "'s Battleship sank. ")
@@ -315,6 +331,7 @@ def player_versus_player():
     player_switch()
     input("\nNow player 2 place their ships.\n")
     set_place(b_array)
+    player_switch()
     while True:
         shoot("Player 1")
         check_win()
@@ -394,7 +411,7 @@ def random_shooting():
 
                 ai_var = 0
             break
-    # nyomtat(a_array)
+    # print_for_player(a_array)
 
 
 def pos_checker():
@@ -453,7 +470,7 @@ def pos_checker():
                 ai_var = 0
                 break
         break
-    # nyomtat(a_array)
+    # print_for_player(a_array)
 
 
 def bombardment():
@@ -544,7 +561,8 @@ pa_mothership, pb_mothership = 4, 4
 pa_battleship, pb_battleship = 5, 5
 
 
-ships = [two_length_ship, three_length_ship, four_length_ship, five_length_ship]
+ships = [two_length_ship, three_length_ship,
+         four_length_ship, five_length_ship]
 ship_names = ["Submarine", "Cruiser", "Mothership", "Battleship"]
 abc = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
 
@@ -554,6 +572,28 @@ y_pos_checker = 0
 x_pos_checker = 0
 ai_var = 0
 shoot_dir = 0
+
+test_array1 = [[3, 4, 5, 6, 0, 0, 0, 0, 0, 0],
+               [3, 4, 5, 6, 0, 0, 0, 0, 0, 0],
+               [0, 4, 5, 6, 0, 0, 0, 0, 0, 0],
+               [0, 0, 5, 6, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 6, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+
+test_array2 = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 6, 6, 6, 6, 6],
+               [0, 0, 0, 0, 0, 0, 5, 5, 5, 5],
+               [0, 0, 0, 0, 0, 0, 0, 4, 4, 4],
+               [0, 0, 0, 0, 0, 0, 0, 0, 3, 3]]
 
 
 def main():
